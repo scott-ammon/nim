@@ -37,10 +37,14 @@ var switchPlayer = function() {
   }
   // reset move boolean for next player
   itemRemoved = false;
+
+  // change color of items to current player color
 }
 
 var removeItem = function() {
-  
+	// dismiss all toast messages so they don't stack up
+  M.Toast.dismissAll();
+
   // store heap of player's first clicked object
   if(!itemRemoved) {
     selectedHeap = $(this).parent().attr('id');
@@ -55,8 +59,13 @@ var removeItem = function() {
     console.log(heapObj);
     // hide the clicked item from the correct heap
     $(this).hide();
+
+    // if the heap is empty, auto switch the player
+    if(heapObj[selectedHeap] === 0){
+    	switchPlayer();
+    }
   } else {
-  	console.log("can't remove from this heap!");
+  	M.toast({html: 'Only remove items from one heap!', classes: 'rounded'});
   }
 };
 
