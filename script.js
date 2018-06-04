@@ -9,8 +9,8 @@ var heapObj = {
 };
 
 
-var initGame = function(e) {
-	e.preventDefault();
+var initGame = function() {
+
 	// display modal window that selects 2p or 1 v comp, and enters usernames
 	// set mode of game play for either 2p or person v computer
 	// fade in game board and display which user should play first
@@ -26,7 +26,16 @@ var checkForWin = function() {
 };
 
 var switchPlayer = function() {
-  // player === 1 ? player = 2 : player = 1;
+  // check for win when player is switched
+  var heapSum = 0;
+
+  for(heap in heapObj) {
+    heapSum += heapObj[heap];
+  }
+  
+  heapSum = 1 ? gameOver = true : gameOver = false;
+  
+  
   if(player === 1) {
   	player = 2;
     $('#player-one').addClass('disabled');
@@ -36,10 +45,9 @@ var switchPlayer = function() {
     $('#player-two').addClass('disabled');
     $('#player-one').removeClass('disabled');
   }
+
   // reset move boolean for next player
   itemRemoved = false;
-
-  // change color of items to current player color
 }
 
 var removeItem = function() {
@@ -58,14 +66,14 @@ var removeItem = function() {
   if($(this).parent().attr('id') === selectedHeap) {
   	heapObj[selectedHeap]--;
     console.log(heapObj);
-    // hide the clicked item from the correct heap
     $(this).hide();
 
-    // if the heap is empty, auto switch the player
+    // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
     	switchPlayer();
     }
   } else {
+  	// case where user selects an item from a second heap during a turn
   	M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
   }
 };
@@ -76,8 +84,6 @@ $(document).ready(function() {
   // initialize and open the modal on page load
   $('.modal').modal();
   $('.modal').modal('open');
-
-  $('.form').on('submit', initGame);
 
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
