@@ -2,6 +2,7 @@
 var player = 1;
 var itemRemoved = false;
 var selectedHeap = null;
+var gameOver = false;
 var heapObj = {
 	"heap-one": 3,
 	"heap-two": 5,
@@ -33,17 +34,21 @@ var switchPlayer = function() {
     heapSum += heapObj[heap];
   }
   
-  heapSum = 1 ? gameOver = true : gameOver = false;
+  heapSum === 1 ? gameOver = true : gameOver = false;
   
-  
-  if(player === 1) {
-  	player = 2;
-    $('#player-one').addClass('disabled');
-    $('#player-two').removeClass('disabled');
+  if(!gameOver) {
+    if(player === 1) {
+    	player = 2;
+      $('#player-one').addClass('disabled');
+      $('#player-two').removeClass('disabled');
+    } else {
+    	player = 1;
+      $('#player-two').addClass('disabled');
+      $('#player-one').removeClass('disabled');
+    }
   } else {
-  	player = 1;
-    $('#player-two').addClass('disabled');
-    $('#player-one').removeClass('disabled');
+  	// run game over logic here
+  	console.log('Game Over. Player', player, ' won!');
   }
 
   // reset move boolean for next player
@@ -59,8 +64,8 @@ var removeItem = function() {
     selectedHeap = $(this).parent().attr('id');
     itemRemoved = true;
   }
-  console.log('selectedHeap: ', selectedHeap);
-  console.log('id of clicked: ', $(this).parent().attr('id'));
+  // console.log('selectedHeap: ', selectedHeap);
+  // console.log('id of clicked: ', $(this).parent().attr('id'));
 
   // check to see if valid move
   if($(this).parent().attr('id') === selectedHeap) {
