@@ -1,4 +1,5 @@
 // Variable definitions
+var player = 1;
 
 var heapObj = {
 	"heap-one": 3,
@@ -22,10 +23,18 @@ var checkForWin = function() {
   // enter this function if there is one heap left
 };
 
+var switchPlayer = function() {
+  player === 1 ? player = 2 : player = 1;
+  console.log('player is: ', player);
+}
+
 var removeItem = function() {
   
-  // find heap of object and remove it from heap array
+  // find heap of clicked object
   var heapOfItem = $(this).parent().attr('id');
+  
+  // check to see if valid move
+  
   heapObj[heapOfItem]--;
   console.log(heapObj);
  
@@ -33,12 +42,16 @@ var removeItem = function() {
   $(this).hide();
 };
 
-// keep this section minimal, call functions outside
 $(document).ready(function() {
   console.log('js is working');
 
+  // remove an item when it is clicked on
   $(".item").on("click", removeItem);
 
+  // reset the gameboard
   $(".reset").on("click", resetGame);
+
+  // switch the current player
+  $(".switch-player").on("click", switchPlayer);
 
 });
