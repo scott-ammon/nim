@@ -1,6 +1,7 @@
 // Variable definitions
 var player = 1;
-
+var itemRemoved = false;
+var selectedHeap = null;
 var heapObj = {
 	"heap-one": 3,
 	"heap-two": 5,
@@ -34,20 +35,29 @@ var switchPlayer = function() {
     $('#player-two').addClass('disabled');
     $('#player-one').removeClass('disabled');
   }
+  // reset move boolean for next player
+  itemRemoved = false;
 }
 
 var removeItem = function() {
   
-  // find heap of clicked object
-  var heapOfItem = $(this).parent().attr('id');
-  
+  // store heap of player's first clicked object
+  if(!itemRemoved) {
+    selectedHeap = $(this).parent().attr('id');
+    itemRemoved = true;
+  }
+  console.log('selectedHeap: ', selectedHeap);
+  console.log('id of clicked: ', $(this).parent().attr('id'));
+
   // check to see if valid move
-  
-  heapObj[heapOfItem]--;
-  console.log(heapObj);
- 
-  // hide the clicked item from the correct heap
-  $(this).hide();
+  if($(this).parent().attr('id') === selectedHeap) {
+  	heapObj[selectedHeap]--;
+    console.log(heapObj);
+    // hide the clicked item from the correct heap
+    $(this).hide();
+  } else {
+  	console.log("can't remove from this heap!");
+  }
 };
 
 $(document).ready(function() {
