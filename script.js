@@ -24,8 +24,16 @@ var checkForWin = function() {
 };
 
 var switchPlayer = function() {
-  player === 1 ? player = 2 : player = 1;
-  console.log('player is: ', player);
+  // player === 1 ? player = 2 : player = 1;
+  if(player === 1) {
+  	player = 2;
+    $('#player-one').addClass('disabled');
+    $('#player-two').removeClass('disabled');
+  } else {
+  	player = 1;
+    $('#player-two').addClass('disabled');
+    $('#player-one').removeClass('disabled');
+  }
 }
 
 var removeItem = function() {
