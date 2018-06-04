@@ -1,5 +1,53 @@
 /* ======= Main Content Styles ======= */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-h1 {
-	color: blue;
+header {
+  max-width: 70%;
+  margin: 0 auto;
+	text-align: center;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.gameboard {
+	position: relative;
+	min-height: 40vh;
+  border: 4px solid black;
+  border-radius: 15px;
+}
+
+/* Positioning for each heap */
+.item {
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 10px;
+}
+
+.heap-one,
+.heap-two,
+.heap-three {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding-bottom: 50px;
+}
+
+
+
+.button-panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: .5em;
+  height: 10vh;
+}
+
+.btn {
+	border-radius: 10px;
 }
