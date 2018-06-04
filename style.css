@@ -51,3 +51,7 @@ main {
 .btn {
 	border-radius: 10px;
 }
+
+.modal {
+	margin-top: 20vh;
+}

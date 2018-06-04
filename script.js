@@ -9,7 +9,8 @@ var heapObj = {
 };
 
 
-var initGame = function() {
+var initGame = function(e) {
+	e.preventDefault();
 	// display modal window that selects 2p or 1 v comp, and enters usernames
 	// set mode of game play for either 2p or person v computer
 	// fade in game board and display which user should play first
@@ -65,12 +66,18 @@ var removeItem = function() {
     	switchPlayer();
     }
   } else {
-  	M.toast({html: 'Only remove items from one heap!', classes: 'rounded'});
+  	M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
   }
 };
 
 $(document).ready(function() {
   console.log('js is working');
+
+  // initialize and open the modal on page load
+  $('.modal').modal();
+  $('.modal').modal('open');
+
+  $('.form').on('submit', initGame);
 
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
