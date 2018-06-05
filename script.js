@@ -14,15 +14,16 @@ var initGame = function() {
   
   if($("input[name='player-one']").val()) {
     var playerOneName = $("input[name='player-one']").val();
-    $('#player-one').text(playerOneName + "'s turn!");
+    $('#player-one').text(playerOneName);
   }
   
   if(aiMode === true) {
-    $('#player-two').text("AI's turn!");
+    $('#player-two').text("");
+    $('#player-two').append("<i class='material-icons'>computer</i>");
   } else {
     if($("input[name='player-two']").val()){
       var playerTwoName = $("input[name='player-two']").val();
-      $('#player-two').text(playerTwoName + "'s turn!");
+      $('#player-two').text(playerTwoName);
     }
   }
   
@@ -31,7 +32,7 @@ var initGame = function() {
 
 var resetGame = function() {
   $('h1').remove();
-  
+
   $('.item').show();
 
   player = 1;

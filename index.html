@@ -4,6 +4,7 @@
   <title>Unit1 Game</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link src="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -17,8 +18,8 @@
       <h4>Nim</h4>
       <p>Nim is a mathematical strategy game. Players take turns removing as many marbles as they wish from one single pile. The player left to remove the last marble loses!</p><br>
       <p>Select Game Mode:</p>
-      <h4 class="btn mode-human">2 Player</h4>
-      <h4 class="btn mode-comp">v. Computer</h4><br><br>
+      <h4 class="btn mode-human red darken-2">Two Player</h4>
+      <h4 class="btn mode-comp red darken-2">Versus AI</h4><br><br>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Play!</a>
@@ -49,34 +50,34 @@
     <div class="gameboard">
 
       <div class="heap-one" id="heap-one">
-        <div class="item" id="h1-1"></div>
-        <div class="item" id="h1-2"></div>
-        <div class="item" id="h1-3"></div>
+        <div class="item blue-grey lighten-4" id="h1-1"></div>
+        <div class="item blue-grey lighten-4" id="h1-2"></div>
+        <div class="item blue-grey lighten-4" id="h1-3"></div>
       </div>
 
       <div class="heap-two" id="heap-two">
-        <div class="item" id="h2-1"></div>
-        <div class="item" id="h2-2"></div>
-        <div class="item" id="h2-3"></div>
-        <div class="item" id="h2-4"></div>
-        <div class="item" id="h2-5"></div> 
+        <div class="item blue-grey lighten-1" id="h2-1"></div>
+        <div class="item blue-grey lighten-1" id="h2-2"></div>
+        <div class="item blue-grey lighten-1" id="h2-3"></div>
+        <div class="item blue-grey lighten-1" id="h2-4"></div>
+        <div class="item blue-grey lighten-1" id="h2-5"></div> 
       </div>     
 
       <div class="heap-three" id="heap-three">
-        <div class="item" id="h3-1"></div>
-        <div class="item" id="h3-2"></div>
-        <div class="item" id="h3-3"></div>
-        <div class="item" id="h3-4"></div>
-        <div class="item" id="h3-5"></div>
-        <div class="item" id="h3-6"></div>
-        <div class="item" id="h3-7"></div>
+        <div class="item blue-grey darken-2" id="h3-1"></div>
+        <div class="item blue-grey darken-2" id="h3-2"></div>
+        <div class="item blue-grey darken-2" id="h3-3"></div>
+        <div class="item blue-grey darken-2" id="h3-4"></div>
+        <div class="item blue-grey darken-2" id="h3-5"></div>
+        <div class="item blue-grey darken-2" id="h3-6"></div>
+        <div class="item blue-grey darken-2" id="h3-7"></div>
       </div>
     </div>
 
     <!-- Control Panel for game play -->
     <div class="button-panel container">
       <h5 class="red darken-2 waves-effect waves-light btn-large switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-one">Player 1</h5>
-      <h5 class="blue darken-2 waves-effect waves-light btn-large disabled switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-two">Player 2</h5>
+      <h5 class="red darken-2 waves-effect waves-light btn-large disabled switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-two">Player 2</h5>
     </div>
 
   </main>
