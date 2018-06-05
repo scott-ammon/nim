@@ -27,15 +27,22 @@
 
   <!-- Materialize nav bar with links -->
   <nav>
-    <div class="nav-wrapper blue-grey darken-4">
-      <a class="brand-logo center">NIM</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <div class="nav-wrapper">
+      <a class="brand-logo center">nim</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a class="reset">Reset</a></li>
         <li><a href="index.html">Game Mode</a></li>
         <li><a href="instructions.html">Instructions</a></li>
       </ul>
     </div>
   </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a class="reset">Reset</a></li>
+    <li><a href="index.html">Game Mode</a></li>
+    <li><a href="instructions.html">Instructions</a></li>
+  </ul>
 
   <!-- Divs to contain each heap item -->
   <main class="container">
@@ -65,8 +72,8 @@
 
     <!-- Control Panel for game play -->
     <div class="button-panel">
-      <h5 class="red darken-2 waves-effect waves-light btn-large switch-player" id="player-one">Player 1</h5>
-      <h5 class="blue darken-2 waves-effect waves-light btn-large disabled switch-player" id="player-two">Player 2</h5>
+      <h5 class="red darken-2 waves-effect waves-light btn-large switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-one">Player 1</h5>
+      <h5 class="blue darken-2 waves-effect waves-light btn-large disabled switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-two">Player 2</h5>
     </div>
 
   </main>
@@ -75,8 +82,8 @@
   <footer class="page-footer blue-grey darken-4">
       <div>
         <a class="grey-text text-lighten-4" href="https://www.scottammon.com">&copy 2018 Scott Ammon</a>
-        <a class="grey-text text-lighten-4 right" href="#!">Github</a>
-        <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/scottammon">LinkedIn &nbsp</a>
+        <a class="grey-text text-lighten-4 right" href="#!"><img src="img/github.svg" class="logo responsive-img"></a>
+        <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/scottammon"><img src="img/linkedin.png" class="logo responsive-img"></a>
       </div>
   </footer>
 

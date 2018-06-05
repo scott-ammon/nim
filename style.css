@@ -38,5 +38,11 @@ main {
 }
 
 a {
-  margin: 0 5px 20px 5px;
+  margin: 0 5px 5px 5px;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  filter: invert(100%);
 }

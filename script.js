@@ -163,4 +163,7 @@ $(document).ready(function() {
   // initialize the game with options selected by user in modal
   $("a.modal-close").on("click", initGame);
 
+  $('.tooltipped').tooltip();
+  $('.sidenav').sidenav();
+
 });
