@@ -5,12 +5,6 @@ body {
   flex-direction: column;
 }
 
-header {
-  max-width: 70%;
-  margin: 0 auto;
-  text-align: center;
-}
-
 main {
   flex: 1 0 auto;
 }
@@ -20,9 +14,8 @@ main {
   flex-direction: column;
   justify-content: space-around;
   position: relative;
-  min-height: 40vh;
-  border: 4px solid black;
-  border-radius: 15px;
+  min-height: 50vh;
+  margin-top: 10%;
 }
 
 /* Positioning for each heap */

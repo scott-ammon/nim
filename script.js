@@ -12,21 +12,26 @@ var heapObj = {
 
 var initGame = function() {
   
-  var playerOneName = $("input[name='player-one']").val();
-  $('#player-one').text(playerOneName + "'s turn!");
-
+  if($("input[name='player-one']").val()) {
+    var playerOneName = $("input[name='player-one']").val();
+    $('#player-one').text(playerOneName + "'s turn!");
+  }
+  
   if(aiMode === true) {
     $('#player-two').text("AI's turn!");
   } else {
-    var playerTwoName = $("input[name='player-two']").val();
-    $('#player-two').text(playerTwoName + "'s turn!");
+    if($("input[name='player-two']").val()){
+      var playerTwoName = $("input[name='player-two']").val();
+      $('#player-two').text(playerTwoName + "'s turn!");
+    }
   }
   
   // fade in game board and display which user should play first
 };
 
 var resetGame = function() {
-  // pop up modal window again
+  $('h1').remove();
+  
   $('.item').show();
 
   player = 1;
@@ -37,6 +42,7 @@ var resetGame = function() {
   heapObj['heap-three'] = 7;
 
   $('#player-one').removeClass('disabled');
+  $('#player-two').addClass('disabled');
 };
 
 var runWinSequence = function() {
@@ -51,8 +57,6 @@ var runWinSequence = function() {
     $('.item').fadeOut();
     setTimeout(function() { $('.heap-two').append("<h1>Player " + player + " wins!</h1>"); }, 500);
   },500);
-
-  console.log('Player ' + player + ' wins');
 }
 
 var aiMove = function() {
