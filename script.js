@@ -18,26 +18,32 @@ var initGame = function() {
 
 var resetGame = function() {
   // pop up modal window again
-   $('.item').show();
-   heapObj['heap-one'] = 3;
-   heapObj['heap-two'] = 5;
-   heapObj['heap-three'] = 7;
+  $('.item').show();
+
+  player = 1;
+  gameOver = false;
+
+  heapObj['heap-one'] = 3;
+  heapObj['heap-two'] = 5;
+  heapObj['heap-three'] = 7;
+
+  $('#player-one').removeClass('disabled');
 };
 
 var runWinSequence = function() {
+  // disable player switching since game is over
+  if(player === 1) {
+      $('#player-one').addClass('disabled');
+    } else {
+      $('#player-two').addClass('disabled');
+    }
+  // hide last remaining item
+  setTimeout(function() {$('.item').fadeOut();},1000);
+
   console.log(player, ' wins!');
 }
 
-var checkForWin = function() {
-  if(heapSum === 0) {
-    gameOver = true;
-    console.log(player,' loses');
-  }
-};
-
 var switchPlayer = function() {
-  // check for win when player is switched
-  // checkForWin();
 
   var heapSum = 0;
   for(heap in heapObj) {
@@ -61,7 +67,7 @@ var switchPlayer = function() {
     }
   }
 
-  // reset move boolean for next player
+  // reset move boolean for next player to choose from any heap
   itemRemoved = false;
 };
 
@@ -74,17 +80,25 @@ var removeItem = function() {
     selectedHeap = $(this).parent().attr('id');
     itemRemoved = true;
   }
-  // console.log('selectedHeap: ', selectedHeap);
-  // console.log('id of clicked: ', $(this).parent().attr('id'));
 
-  // check to see if valid move
+  // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
     heapObj[selectedHeap]--;
     $(this).hide();
-
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
-      switchPlayer();
+      // check if the player removed the final item themselves... stupid move!
+      var heapSum = 0;
+      for(heap in heapObj) {
+        heapSum += heapObj[heap];
+      }
+      if(heapSum === 0) {
+        gameOver = true;
+        // run an endGame function here?
+        console.log('Player ' + player + ' loses...');
+      } else {
+        switchPlayer();
+      }
     }
   } else {
     // case where user selects an item from a second heap during a turn
