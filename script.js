@@ -49,10 +49,13 @@ var runWinSequence = function() {
   // hide last remaining item
   setTimeout(function() {$('.item').fadeOut();},1000);
 
-  console.log(player, ' wins!');
+  console.log('Player ' + player + ' wins');
 }
 
 var aiMove = function() {
+  // triggers the click event on the selected item
+  // loop over the number of items AI wants to remove:
+  $("#h2-2").triggerHandler("click");
 
 }
 
@@ -83,19 +86,18 @@ var switchPlayer = function() {
       }
     }
   }
+
   // reset move boolean for next player to choose from any heap
   itemRemoved = false;
+
+  if(aiMode && player === 2) {
+    aiMove();
+  }
 };
 
 var removeItem = function() {
   // dismiss all toast messages so they don't stack up
   M.Toast.dismissAll();
-
-  // placeholder for computer move logic...
-  // if(aiMode) {
-  //   aiMove();
-  // }
-  //
 
   // store heap of player's first clicked object
   if(!itemRemoved) {
