@@ -31,10 +31,12 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5em;
-  height: 10vh;
 }
 
 .btn-large {
   border-radius: 10px;
+}
+
+a {
+  margin: 0 5px 20px 5px;
 }
