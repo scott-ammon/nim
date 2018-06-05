@@ -1,5 +1,6 @@
 /* ======= Main Content Styles ======= */
 body {
+  background-color: #fffddf;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -7,6 +8,14 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+.item {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: #222;
+  margin: .5em;
 }
 
 .gameboard {
