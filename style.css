@@ -26,17 +26,11 @@ main {
 }
 
 /* Positioning for each heap */
-.item {
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 10px;
-}
-
 .heap-one,
 .heap-two,
 .heap-three {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-content: center;
 }
 
@@ -48,6 +42,6 @@ main {
   height: 10vh;
 }
 
-.btn {
+.btn-large {
   border-radius: 10px;
 }

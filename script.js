@@ -47,7 +47,10 @@ var runWinSequence = function() {
       $('#player-two').addClass('disabled');
     }
   // hide last remaining item
-  setTimeout(function() {$('.item').fadeOut();},1000);
+  setTimeout(function() {
+    $('.item').fadeOut();
+    setTimeout(function() { $('.heap-two').append("<h1>Player " + player + " wins!</h1>"); }, 500);
+  },500);
 
   console.log('Player ' + player + ' wins');
 }
