@@ -126,6 +126,8 @@ var removeItem = function() {
       }
       if(heapSum === 0) {
         gameOver = true;
+        player === 1 ? player = 2 : player = 1;
+        runWinSequence();
         // run an endGame function here?
         console.log('Player ' + player + ' loses...');
       } else {
