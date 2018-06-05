@@ -1,4 +1,5 @@
 // Variable definitions
+var aiMode = false;
 var player = 1;
 var itemRemoved = false;
 var selectedHeap = null;
@@ -10,9 +11,17 @@ var heapObj = {
 };
 
 var initGame = function() {
+  
+  var playerOneName = $("input[name='player-one']").val();
+  $('#player-one').text(playerOneName + "'s turn!");
 
-  // display modal window that selects 2p or 1 v comp, and enters usernames
-  // set mode of game play for either 2p or person v computer
+  if(aiMode === true) {
+    $('#player-two').text("AI's turn!");
+  } else {
+    var playerTwoName = $("input[name='player-two']").val();
+    $('#player-two').text(playerTwoName + "'s turn!");
+  }
+  
   // fade in game board and display which user should play first
 };
 
@@ -43,30 +52,37 @@ var runWinSequence = function() {
   console.log(player, ' wins!');
 }
 
+var aiMove = function() {
+
+}
+
 var switchPlayer = function() {
+  
+  if(!itemRemoved) {
+    M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
+  } else {
+    var heapSum = 0;
+    for(heap in heapObj) {
+      heapSum += heapObj[heap];
+    }
 
-  var heapSum = 0;
-  for(heap in heapObj) {
-    heapSum += heapObj[heap];
-  }
+    if(heapSum === 1) {
+      gameOver = true;
+      runWinSequence();
+    }
 
-  if(heapSum === 1) {
-    gameOver = true;
-    runWinSequence();
-  }
-
-  if(!gameOver) {
-    if(player === 1) {
-      player = 2;
-      $('#player-one').addClass('disabled');
-      $('#player-two').removeClass('disabled');
-    } else {
-      player = 1;
-      $('#player-two').addClass('disabled');
-      $('#player-one').removeClass('disabled');
+    if(!gameOver) {
+      if(player === 1) {
+        player = 2;
+        $('#player-one').addClass('disabled');
+        $('#player-two').removeClass('disabled');
+      } else {
+        player = 1;
+        $('#player-two').addClass('disabled');
+        $('#player-one').removeClass('disabled');
+      }
     }
   }
-
   // reset move boolean for next player to choose from any heap
   itemRemoved = false;
 };
@@ -74,6 +90,12 @@ var switchPlayer = function() {
 var removeItem = function() {
   // dismiss all toast messages so they don't stack up
   M.Toast.dismissAll();
+
+  // placeholder for computer move logic...
+  // if(aiMode) {
+  //   aiMove();
+  // }
+  //
 
   // store heap of player's first clicked object
   if(!itemRemoved) {
@@ -108,16 +130,28 @@ var removeItem = function() {
 
 $(document).ready(function() {
   // initialize and open the modal on page load
-  $('.modal').modal();
-  $('.modal').modal('open');
+  $('.modal').modal({'opacity': 0.75});
 
+  // event listeners for buttons in the modal window
+  $('.mode-human').on("click", function() {
+    aiMode = false;
+    $('.modal-content').append("<label>Player 1 Name:<input type='text' name='player-one'></label><label>Player 2 Name:<input type='text' name='player-two'></label>");
+  });
+
+  $('.mode-comp').on("click", function() {
+    aiMode = true;
+    $('.modal-content').append("<label>Your Name:<input type='text' name='player-one'>");
+  });
+  
+  $('.modal').modal('open');
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
-
   // reset the gameboard
   $(".reset").on("click", resetGame);
-
   // switch the current player
   $(".switch-player").on("click", switchPlayer);
+
+  // initialize the game with options selected by user in modal
+  $("a.modal-close").on("click", initGame);
 
 });
