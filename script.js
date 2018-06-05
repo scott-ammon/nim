@@ -4,59 +4,69 @@ var itemRemoved = false;
 var selectedHeap = null;
 var gameOver = false;
 var heapObj = {
-	"heap-one": 3,
-	"heap-two": 5,
-	"heap-three": 7
+  "heap-one": 3,
+  "heap-two": 5,
+  "heap-three": 7
 };
-
 
 var initGame = function() {
 
-	// display modal window that selects 2p or 1 v comp, and enters usernames
-	// set mode of game play for either 2p or person v computer
-	// fade in game board and display which user should play first
+  // display modal window that selects 2p or 1 v comp, and enters usernames
+  // set mode of game play for either 2p or person v computer
+  // fade in game board and display which user should play first
 };
 
 var resetGame = function() {
-	// pop up modal window again
-	 $('.item').show();
+  // pop up modal window again
+   $('.item').show();
+   heapObj['heap-one'] = 3;
+   heapObj['heap-two'] = 5;
+   heapObj['heap-three'] = 7;
 };
 
+var runWinSequence = function() {
+  console.log(player, ' wins!');
+}
+
 var checkForWin = function() {
-  // enter this function if there is one heap left
+  if(heapSum === 0) {
+    gameOver = true;
+    console.log(player,' loses');
+  }
 };
 
 var switchPlayer = function() {
   // check for win when player is switched
-  var heapSum = 0;
+  // checkForWin();
 
+  var heapSum = 0;
   for(heap in heapObj) {
     heapSum += heapObj[heap];
   }
-  
-  heapSum === 1 ? gameOver = true : gameOver = false;
-  
+
+  if(heapSum === 1) {
+    gameOver = true;
+    runWinSequence();
+  }
+
   if(!gameOver) {
     if(player === 1) {
-    	player = 2;
+      player = 2;
       $('#player-one').addClass('disabled');
       $('#player-two').removeClass('disabled');
     } else {
-    	player = 1;
+      player = 1;
       $('#player-two').addClass('disabled');
       $('#player-one').removeClass('disabled');
     }
-  } else {
-  	// run game over logic here
-  	console.log('Game Over. Player', player, ' won!');
   }
 
   // reset move boolean for next player
   itemRemoved = false;
-}
+};
 
 var removeItem = function() {
-	// dismiss all toast messages so they don't stack up
+  // dismiss all toast messages so they don't stack up
   M.Toast.dismissAll();
 
   // store heap of player's first clicked object
@@ -69,23 +79,20 @@ var removeItem = function() {
 
   // check to see if valid move
   if($(this).parent().attr('id') === selectedHeap) {
-  	heapObj[selectedHeap]--;
-    console.log(heapObj);
+    heapObj[selectedHeap]--;
     $(this).hide();
 
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
-    	switchPlayer();
+      switchPlayer();
     }
   } else {
-  	// case where user selects an item from a second heap during a turn
-  	M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
+    // case where user selects an item from a second heap during a turn
+    M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
   }
 };
 
 $(document).ready(function() {
-  console.log('js is working');
-
   // initialize and open the modal on page load
   $('.modal').modal();
   $('.modal').modal('open');
