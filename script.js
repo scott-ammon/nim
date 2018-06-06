@@ -61,9 +61,15 @@ var runWinSequence = function() {
 }
 
 var aiMove = function() {
-  // triggers the click event on the selected item
+  // binary digital sum (nim sum) of heaps
+    // if nim sum is zero, remove one from largest heap
+
+  // binary digital sum of each heap and total nim sum
+    // if this sum is less than heap, remove some to make nim sum of zero
+
+
   // loop over the number of items AI wants to remove:
-  $("#h2-2").triggerHandler("click");
+  //$(itemToRemove).triggerHandler("click");
 
 }
 
