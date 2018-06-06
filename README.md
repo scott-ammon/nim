@@ -12,6 +12,10 @@ I wanted to break this game down into solvable pieces, and ensure that each phas
 
 ![trello](img/trello.png?raw=true)
 
+As I progressed through the development and checked off items from the Trello board, I finally reached a minimum viable product. The image below shows the first iteration of the game which implements a simple two player functionality.
+
+![gameboard](img/gameboard.png?raw=true)
+
 I decided to implement a computer player that is able to beat a human player under the 'misere' style of playing conditions - where the player who has to remove the last piece is the loser. This makes it more difficult than normal game play where the player who takes the last piece wins, which I'll explain further on. First, the correct game moves can be determined using something called a 'nim-sum' which is actually a binary digital sum of the quantities of items in each pile. 
 
 There is a mathematical proof which demonstrates that if the gameboard has a non-zero nim-sum, the next player will always have a particular move that can create a zero nim-sum. The corollary is also true - if the nim-sum is made to be zero, the next player will ALWAYS make the nim-sum non-zero after moving any number of items from any pile. While this may sound confusing, it actually makes gameplay pretty simple - find the nim-sum of the current board state and determine how many pieces to remove from a pile to reduce the nim-sum to zero. If it's your turn and the nim-sum is already zero, then you're going to lose unless the other player makes a mistake on a later turn!
