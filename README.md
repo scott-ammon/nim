@@ -1,5 +1,5 @@
 # unit1-game
-GA Unit1 Project
+General Assembly Unit 1 Project - Nim Game with Computer Player
 
 For our first project deliverable, I'm building a version of Nim, a simple mathematical strategy game where players take turns removing items from three distinct piles. Players can remove as many items from one single pile during a turn. The player who is left to remove the last remaining piece loses. 
 
