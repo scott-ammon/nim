@@ -1,22 +1,20 @@
-// Variable definitions
-var aiMode = false;
-var player = 1;
-var itemRemoved = false;
-var selectedHeap = null;
-var gameOver = false;
-var heapObj = {
+var aiMode = false;      // whether computer mode is enabled
+var player = 1;          // tracks current player (1 or 2...2 is also computer)
+var itemRemoved = false; // tracks whether player has made an initial move
+var selectedHeap = null; // tracks which heap the computer should choose from
+var gameOver = false;    // changes on win conditions
+var heapObj = {          // stores item quantity in each heap
   "heap-one": 3,
   "heap-two": 5,
   "heap-three": 7
 };
 
 var initGame = function() {
-  
+  // display the player names on the game buttons
   if($("input[name='player-one']").val()) {
     var playerOneName = $("input[name='player-one']").val();
     $('#player-one').text(playerOneName);
   }
-  
   if(aiMode === true) {
     $('#player-two').text("");
     $('#player-two').append("<i class='material-icons'>computer</i>");
@@ -26,14 +24,10 @@ var initGame = function() {
       $('#player-two').text(playerTwoName);
     }
   }
-  
-  // fade in game board and display which user should play first
 };
 
 var resetGame = function() {
   $('h1').remove();
-
-  $('.item').show();
 
   player = 1;
   gameOver = false;
@@ -137,7 +131,7 @@ var aiPlayTurn = function() {
   // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
 
-  console.log("Computer thinks this is the right move: ", itemsToRemove);
+  console.log("Computer says to remove: ", itemsToRemove);
 
   // get the name of the heap to match the class of the divs in html
   var heapKeys = Object.keys(heapObj);
