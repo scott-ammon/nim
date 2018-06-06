@@ -10,5 +10,10 @@ The first step was wireframing the basic layout of the game, which I drew in Ado
 ![wireframe](img/project1-wireframe.png?raw=true)
 
 
-I wanted to break this game down into solvable pieces, and ensure that each phase worked well before moving on to the next. The first logical step was to create the simple 2 player version that alternates between turns and checks for a win. The logic behind this game is simple, but required a few interesting checks for the win cases. 
+I wanted to break this game down into solvable pieces, and ensure that each phase worked well before moving on to the next. The first logical step was to create the simple 2 player version that alternates between turns and checks for a win. In order to plan out the creation of the game, I've been tracking certain pieces on a Trello board, shown below in the in-progress state.
+
+![trello](img/trello.png?raw=true)
+
+
+
 
