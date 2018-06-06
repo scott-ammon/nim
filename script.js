@@ -145,6 +145,8 @@ var aiPlayTurn = function() {
 
   var quantityToRemove = itemsToRemove["quantity"];
   // get children of heapName
+  // test if this syntax works:
+  // $('.'+heapName).children().hide(500);
   // loop over them and remove correct quantity of children
 
   console.log('heap name is: ', heapName);
@@ -202,7 +204,7 @@ var removeItem = function() {
   // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
     heapObj[selectedHeap]--;
-    $(this).hide();
+    $(this).hide(500);
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
       // check if the player removed the final item themselves... stupid move!
