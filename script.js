@@ -119,11 +119,10 @@ var aiComputeMove = function() {
       var move = 'Move: Take ' + (heapArray[i] - heapSums[i]) + ' from heap ' + (i+1);
     } else {
       var index = heapArray.indexOf(Math.max(...heapArray)) + 1;
-      //var move = 'Move: Take some? from heap ' + index;
     }
   }
 
-  // if no useful move found, remove 1 from largest heap
+  // if no useful move found (e.g. the nim sum is zero), just remove 1 from largest heap
   if(!itemsToRemove["quantity"]) {
     itemsToRemove["heap-index"] = heapArray.indexOf(Math.max(...heapArray));
     itemsToRemove["quantity"] = 1; 
@@ -135,12 +134,23 @@ var aiComputeMove = function() {
 // this function calls the aiComputeMove and then plays the calculated moves
 var aiPlayTurn = function() {
   
+  // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
+
   console.log("Computer thinks this is the right move: ", itemsToRemove);
 
-  // loop over the number of items AI wants to remove:
+  // get the name of the heap to match the class of the divs in html
+  var heapKeys = Object.keys(heapObj);
+  var heapName = heapKeys[itemsToRemove["heap-index"]];
+
+  var quantityToRemove = itemsToRemove["quantity"];
+  // get children of heapName
+  // loop over them and remove correct quantity of children
+
+  console.log('heap name is: ', heapName);
   //$(itemToRemove).triggerHandler("click");
 
+  //switchPlayer();
 };
 
 var switchPlayer = function() {
