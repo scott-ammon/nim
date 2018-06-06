@@ -60,11 +60,11 @@ var runWinSequence = function() {
   },500);
 };
 
-var aiMove = function() {
-  
+// this function reviews the game board and determines quantity and heap to draw from
+var aiComputeMove = function() {
   var heapArray = [];    // array of numbers existing in each heap
   var itemsToRemove = {  // stores the number of items to remove from a heap
-    "heap": null,
+    "heap-index": null,
     "quantity": null
   };
 
@@ -73,12 +73,70 @@ var aiMove = function() {
   }
 
   // check if possible to make odd number of heaps with one item in each
-  var largePiles = 0;
+  var largeHeap = 0;
   for(let i = 0; i < heapArray.length; i++) {
     if(heapArray[i] > 1) {
-      largePiles++;
+      largeHeap++;
     }
   }
+
+  // if there is only one heap to reduce down to 1
+  if(largeHeap <= 1) {
+    //get number of piles greater than 0
+    var numHeaps = 0;
+    for(let i = 0; i < heapArray.length; i++) {
+      if(heapArray[i] > 0) {
+        numHeaps++;
+      }
+    }
+    // determine if number of piles remaining is odd
+    var maxHeap = Math.max(...heapArray);
+    var maxHeapIndex = heapArray.indexOf(maxHeap);
+    itemsToRemove["heap-index"] = maxHeapIndex;
+
+    if(numHeaps % 2 === 1) {
+      // leave one item in the heap to make odd number of 1-item heaps remaining
+      itemsToRemove["quantity"] = maxHeap - 1;
+    } else {
+      // remove the whole heap if an even num of heaps remains
+      itemsToRemove["quantity"] = maxHeap;
+    }
+    return itemsToRemove;
+  }
+
+  // reduce method with exponents returns the binary digital sum!
+  var binarySum = heapArray.reduce(function(x, y) { return x^y;});
+
+  // get nim sums of each heap and the binarySum
+  var heapSums = heapArray.map(function(heapSize) {return heapSize ^ binarySum});
+
+  // check if any of the individual heap sums are smaller than the heap
+  for(let i = 0; i < heapSums.length; i++) {
+    if(heapSums[i] < heapArray[i]) {
+      itemsToRemove["heap-index"] = i;
+      itemsToRemove["quantity"] = heapArray[i] - heapSums[i]; 
+      // check for case where next move reduces to all heap sizes of 1
+      var move = 'Move: Take ' + (heapArray[i] - heapSums[i]) + ' from heap ' + (i+1);
+    } else {
+      var index = heapArray.indexOf(Math.max(...heapArray)) + 1;
+      //var move = 'Move: Take some? from heap ' + index;
+    }
+  }
+
+  // if no useful move found, remove 1 from largest heap
+  if(!itemsToRemove["quantity"]) {
+    itemsToRemove["heap-index"] = heapArray.indexOf(Math.max(...heapArray));
+    itemsToRemove["quantity"] = 1; 
+  }
+
+  return itemsToRemove;
+}
+
+// this function calls the aiComputeMove and then plays the calculated moves
+var aiPlayTurn = function() {
+  
+  var itemsToRemove = aiComputeMove();
+  console.log("Computer thinks this is the right move: ", itemsToRemove);
 
   // loop over the number of items AI wants to remove:
   //$(itemToRemove).triggerHandler("click");
@@ -117,7 +175,7 @@ var switchPlayer = function() {
   itemRemoved = false;
 
   if(aiMode && player === 2) {
-    aiMove();
+    aiPlayTurn();
   }
 };
 
@@ -147,7 +205,6 @@ var removeItem = function() {
         player === 1 ? player = 2 : player = 1;
         runWinSequence();
         // run an endGame function here?
-        console.log('Player ' + player + ' loses...');
       } else {
         switchPlayer();
       }
