@@ -5,6 +5,9 @@ For our first project deliverable, I'm building a version of Nim, a simple mathe
 
 I've decided to implement a computer player that implements the 'minimax' algorithm to beat a human player. 
 
+The first step was wireframing the basic layout of the game, which I drew in Adobe Sketch on my iPad. This makes it really easy to visualize the HTML layout and determine element placement. I'm also using Materialize for the first time, so figuring out what classes to add in order to acheive the visual appearance took some time.
+
+![wireframe](img/project1-wireframe.png?raw=true)
 
 
 I wanted to break this game down into solvable pieces, and ensure that each phase worked well before moving on to the next. The first logical step was to create the simple 2 player version that alternates between turns and checks for a win. The logic behind this game is simple, but required a few interesting checks for the win cases. 
