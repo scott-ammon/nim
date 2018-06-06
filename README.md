@@ -14,7 +14,3 @@ I wanted to break this game down into solvable pieces, and ensure that each phas
 
 ![trello](img/trello.png?raw=true)
 
-
-
-
-# processing-pso-algorithm
