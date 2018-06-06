@@ -58,20 +58,32 @@ var runWinSequence = function() {
     $('.item').fadeOut();
     setTimeout(function() { $('.heap-two').append("<h1>Player " + player + " wins!</h1>"); }, 500);
   },500);
-}
+};
 
 var aiMove = function() {
-  // binary digital sum (nim sum) of heaps
-    // if nim sum is zero, remove one from largest heap
+  
+  var heapArray = [];    // array of numbers existing in each heap
+  var itemsToRemove = {  // stores the number of items to remove from a heap
+    "heap": null,
+    "quantity": null
+  };
 
-  // binary digital sum of each heap and total nim sum
-    // if this sum is less than heap, remove some to make nim sum of zero
+  for(heap in heapObj) {
+      heapArray.push(heapObj[heap]);
+  }
 
+  // check if possible to make odd number of heaps with one item in each
+  var largePiles = 0;
+  for(let i = 0; i < heapArray.length; i++) {
+    if(heapArray[i] > 1) {
+      largePiles++;
+    }
+  }
 
   // loop over the number of items AI wants to remove:
   //$(itemToRemove).triggerHandler("click");
 
-}
+};
 
 var switchPlayer = function() {
   
