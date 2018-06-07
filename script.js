@@ -27,6 +27,7 @@ var initGame = function() {
 };
 
 var resetGame = function() {
+  // remove the win message from previous game
   $('h1').remove();
 
   player = 1;
@@ -42,11 +43,12 @@ var resetGame = function() {
 
 var runWinSequence = function() {
   // disable player switching since game is over
+  $('.switch-player').addClass('disabled');
   if(player === 1) {
-      $('#player-one').addClass('disabled');
+      // $('#player-one').addClass('disabled');
       var playerName = $('#player-one').text();
     } else {
-      $('#player-two').addClass('disabled');
+      // $('#player-two').addClass('disabled');
       var playerName = $('#player-two').text();
     }
 
@@ -160,21 +162,30 @@ var aiPlayTurn = function() {
   while(quantityRemoved < quantityToRemove) {
     
     idString = "#" + itemIds[heapName][itr];
-    console.log('idString: ', idString, 'itr: ', itr);
 
     if($(idString).css("display") != 'none') {
 
       $(idString).triggerHandler("click");
       quantityRemoved++;
-
-      // if you reach end of the heap, loop back to beginning
-      // this handles case where someone pulls from the middle
-      if(itr > maxHeaps[heapName]) {
-        itr = 0;
-      }
     }
+    // if you reach end of the heap, loop back to beginning
+    // this handles case where someone pulls from the middle
+    if(itr > maxHeaps[heapName]) {
+      itr = 0;
+    }
+
     itr++;
   };
+
+  var heapSum = 0;
+  for(heap in heapObj) {
+    heapSum += heapObj[heap];
+  }
+  if(heapSum === 1 && !gameOver) {
+    gameOver = true;
+    runWinSequence();
+    console.log('here!');
+  }
 
   // switch player button when computer is done taking turn
   player = 1;
@@ -194,6 +205,7 @@ var switchPlayer = function() {
 
     if(heapSum === 1) {
       gameOver = true;
+      console.log('this win sequence...');
       runWinSequence();
     }
 
@@ -230,8 +242,6 @@ var removeItem = function() {
     itemRemoved = true;
   }
 
-  console.log($(this).attr('id'));
-
   // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
     heapObj[selectedHeap]--;
@@ -247,9 +257,8 @@ var removeItem = function() {
         gameOver = true;
         player === 1 ? player = 2 : player = 1;
         runWinSequence();
-        // run an endGame function here?
       } else {
-        setTimeout(switchPlayer,500);
+        switchPlayer();
       }
     }
   } else {
