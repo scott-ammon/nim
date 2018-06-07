@@ -180,6 +180,7 @@ var aiPlayTurn = function() {
   for(heap in heapObj) {
     heapSum += heapObj[heap];
   }
+
   if(heapSum === 1 && !gameOver) {
     gameOver = true;
     runWinSequence();
