@@ -44,13 +44,16 @@ var runWinSequence = function() {
   // disable player switching since game is over
   if(player === 1) {
       $('#player-one').addClass('disabled');
+      var playerName = $('#player-one').text();
     } else {
       $('#player-two').addClass('disabled');
+      var playerName = $('#player-two').text();
     }
+
   // hide last remaining item
   setTimeout(function() {
     $('.item').fadeOut();
-    setTimeout(function() { $('.heap-two').append("<h1>Player " + player + " wins!</h1>"); }, 500);
+    setTimeout(function() { $('.heap-two').append("<h1>" + playerName + " wins!</h1>"); }, 500);
   },500);
 };
 
@@ -128,6 +131,11 @@ var aiComputeMove = function() {
 // this function calls the aiComputeMove and then plays the calculated moves
 var aiPlayTurn = function() {
   
+  var itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
+                  "heap-two": ["h2-1", "h2-2", "h2-3", "h2-4", "h2-5"],
+                  "heap-three": ["h3-1", "h3-2", "h3-3", "h3-4", "h3-5", "h3-6", "h3-7"]
+                };
+
   // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
 
@@ -139,13 +147,30 @@ var aiPlayTurn = function() {
 
   var quantityToRemove = itemsToRemove["quantity"];
 
+  var quantityRemoved = 0;
+  var itr = 0;
+  // check css property display: none; to avoid hidden items
   // loop over them and remove correct quantity of children
-  for(let i = 0; i < quantityToRemove; i++) {
-    // if statement here to handle hidden items?
-    $("."+heapName).children().triggerHandler("click");
+  
+  while(quantityRemoved < quantityToRemove) {
+    
+    console.log($('#'+itemIds[heapName][itr]).css("display") == 'none');
+
+    if($('#'+itemIds[heapName][itr]).css("display") != 'none') {
+      $('#'+itemIds[heapName][itr]).triggerHandler("click");
+      quantityRemoved++;
+      console.log(quantityRemoved);
+      itr++;
+      if(itr > heapObj[heapName]) {
+        itr = 0;
+      }
+    }
   }
 
-  setTimeout(switchPlayer,500);
+  // switch player button when computer is done taking turn
+  player = 1;
+  $('#player-two').addClass('disabled');
+  $('#player-one').removeClass('disabled');  
 };
 
 var switchPlayer = function() {
@@ -176,12 +201,12 @@ var switchPlayer = function() {
     }
   }
 
-  // reset move boolean for next player to choose from any heap
-  itemRemoved = false;
-
   if(aiMode && player === 2) {
     aiPlayTurn();
   }
+
+  // reset move boolean for next player to choose from any heap
+  itemRemoved = false;
 };
 
 var removeItem = function() {
