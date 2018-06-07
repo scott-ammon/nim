@@ -149,22 +149,21 @@ var aiPlayTurn = function() {
 
   var quantityRemoved = 0;
   var itr = 0;
-  // check css property display: none; to avoid hidden items
-  // loop over them and remove correct quantity of children
-  
+
+  //remove correct quantity of children
   while(quantityRemoved < quantityToRemove) {
-    
-    console.log($('#'+itemIds[heapName][itr]).css("display") == 'none');
+
+    console.log($('#'+itemIds[heapName][itr]));
 
     if($('#'+itemIds[heapName][itr]).css("display") != 'none') {
       $('#'+itemIds[heapName][itr]).triggerHandler("click");
       quantityRemoved++;
       console.log(quantityRemoved);
-      itr++;
       if(itr > heapObj[heapName]) {
         itr = 0;
       }
     }
+    itr++;
   }
 
   // switch player button when computer is done taking turn
