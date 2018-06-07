@@ -131,22 +131,21 @@ var aiPlayTurn = function() {
   // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
 
-  console.log("Computer says to remove: ", itemsToRemove);
+  console.log("Computer wants to remove: ", itemsToRemove);
 
   // get the name of the heap to match the class of the divs in html
   var heapKeys = Object.keys(heapObj);
   var heapName = heapKeys[itemsToRemove["heap-index"]];
 
   var quantityToRemove = itemsToRemove["quantity"];
-  // get children of heapName
-  // test if this syntax works:
-  // $('.'+heapName).children().hide(500);
+
   // loop over them and remove correct quantity of children
+  for(let i = 0; i < quantityToRemove; i++) {
+    // if statement here to handle hidden items?
+    $("."+heapName).children().triggerHandler("click");
+  }
 
-  console.log('heap name is: ', heapName);
-  //$(itemToRemove).triggerHandler("click");
-
-  //switchPlayer();
+  setTimeout(switchPlayer,500);
 };
 
 var switchPlayer = function() {
@@ -212,7 +211,7 @@ var removeItem = function() {
         runWinSequence();
         // run an endGame function here?
       } else {
-        switchPlayer();
+        setTimeout(switchPlayer,500);
       }
     }
   } else {
