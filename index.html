@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Unit1 Game</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,13 +17,13 @@
   <div class="modal">
     <div class="modal-content">
       <h4>Nim</h4>
-      <p>Nim is a mathematical strategy game. Players take turns removing as many marbles as they wish from one single pile. The player left to remove the last marble loses!</p><br>
+      <p>Nim is a mathematical strategy game. Players take turns removing as many items as they wish from one single pile. The player left to remove the last item loses!</p><br>
       <p>Select Game Mode:</p>
       <h4 class="btn mode-human red darken-2">Two Player</h4>
-      <h4 class="btn mode-comp red darken-2">Versus AI</h4><br><br>
+      <h4 class="btn mode-comp red darken-2">vs. Computer</h4><br><br>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Play!</a>
+      <a href="#!" class="modal-close waves-effect btn-flat">Play!</a>
     </div>
   </div>
 
@@ -76,8 +77,8 @@
 
     <!-- Control Panel for game play -->
     <div class="button-panel container">
-      <h5 class="red darken-2 waves-effect waves-light btn-large switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-one">Player 1</h5>
-      <h5 class="red darken-2 waves-effect waves-light btn-large disabled switch-player flow-text tooltipped" data-position="bottom" data-tooltip="Click to finish your turn" id="player-two">Player 2</h5>
+      <h5 class="red darken-2 waves-effect waves-light btn-large switch-player flow-text" id="player-one">Player 1</h5>
+      <h5 class="red darken-2 waves-effect waves-light btn-large disabled switch-player flow-text" id="player-two">Player 2</h5>
     </div>
 
   </main>
