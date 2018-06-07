@@ -57,6 +57,9 @@ a {
 }
 
 .win-msg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   border-radius: 20px;
   color: white;
   padding: 10px;

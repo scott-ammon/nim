@@ -28,7 +28,7 @@ var initGame = function() {
 
 var resetGame = function() {
   // remove the win message from previous game
-  $('h1').remove();
+  $('h3').remove();
   $('.item').show();
   player = 1;
   gameOver = false;
@@ -53,8 +53,8 @@ var runWinSequence = function() {
 
   // hide last remaining item and display win message after item fade out
   setTimeout(function() {
-    $('.item').fadeOut();
-    setTimeout(function() { $('.heap-one').append("<h3 class='win-msg blue-grey darken-4'>" + playerName + " wins!</h3>"); }, 500);
+    // $('.item').fadeOut();
+    setTimeout(function() { $('.gameboard').append("<h3 class='win-msg blue-grey darken-4'>" + playerName + " wins!</h3>"); }, 500);
   },500);
 };
 
@@ -171,7 +171,6 @@ var aiPlayTurn = function() {
     if(itr > maxHeaps[heapName]) {
       itr = 0;
     }
-
     itr++;
   };
 
@@ -180,17 +179,10 @@ var aiPlayTurn = function() {
     heapSum += heapObj[heap];
   }
 
-  if(heapSum === 1 && !gameOver) {
-    gameOver = true;
-    runWinSequence();
-    $('#player-one').addClass('disabled');
-    $('#player-two').addClass('disabled'); 
-  } else {
-    // switch player button when computer is done taking turn
-    player = 1;
-    $('#player-two').addClass('disabled');
-    $('#player-one').removeClass('disabled');  
-  }
+  // switch player button when computer is done taking turn
+  player = 1;
+  $('#player-two').addClass('disabled');
+  $('#player-one').removeClass('disabled');
 };
 
 var switchPlayer = function() {
@@ -201,11 +193,6 @@ var switchPlayer = function() {
     var heapSum = 0;
     for(heap in heapObj) {
       heapSum += heapObj[heap];
-    }
-
-    if(heapSum === 1) {
-      gameOver = true;
-      runWinSequence();
     }
 
     if(!gameOver) {
@@ -247,13 +234,21 @@ var removeItem = function() {
   if($(this).parent().attr('id') === selectedHeap) {
     heapObj[selectedHeap]--;
     $(this).hide(500);
+
+    var heapSum = 0;
+    for(heap in heapObj) {
+      heapSum += heapObj[heap];
+    }
+
+    if(heapSum === 1 && !gameOver) {
+      gameOver = true;
+      runWinSequence();
+    }
+
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
       // check if the player removed the final item themselves... stupid move!
-      var heapSum = 0;
-      for(heap in heapObj) {
-        heapSum += heapObj[heap];
-      }
+      
       if(heapSum === 0) {
         gameOver = true;
         player === 1 ? player = 2 : player = 1;
