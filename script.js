@@ -42,20 +42,19 @@ var resetGame = function() {
 };
 
 var runWinSequence = function() {
-  // disable player switching since game is over
+  // disable player switching buttons since game is over
   $('.switch-player').addClass('disabled');
+
   if(player === 1) {
-      // $('#player-one').addClass('disabled');
       var playerName = $('#player-one').text();
     } else {
-      // $('#player-two').addClass('disabled');
       var playerName = $('#player-two').text();
     }
 
-  // hide last remaining item
+  // hide last remaining item and display win message after item fade out
   setTimeout(function() {
     $('.item').fadeOut();
-    setTimeout(function() { $('.heap-one').append("<h1>" + playerName + " wins!</h1>"); }, 500);
+    setTimeout(function() { $('.heap-one').append("<h3 class='win-msg blue-grey darken-4'>" + playerName + " wins!</h3>"); }, 500);
   },500);
 };
 
@@ -184,12 +183,14 @@ var aiPlayTurn = function() {
   if(heapSum === 1 && !gameOver) {
     gameOver = true;
     runWinSequence();
+    $('#player-one').addClass('disabled');
+    $('#player-two').addClass('disabled'); 
+  } else {
+    // switch player button when computer is done taking turn
+    player = 1;
+    $('#player-two').addClass('disabled');
+    $('#player-one').removeClass('disabled');  
   }
-
-  // switch player button when computer is done taking turn
-  player = 1;
-  $('#player-two').addClass('disabled');
-  $('#player-one').removeClass('disabled');  
 };
 
 var switchPlayer = function() {
@@ -288,6 +289,9 @@ $(document).ready(function() {
   
   $('.modal').modal('open');
 
+  // initialize the game with options selected by user in modal
+  $("a.modal-close").on("click", initGame);
+
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
   // reset the gameboard
@@ -295,8 +299,7 @@ $(document).ready(function() {
   // switch the current player
   $(".switch-player").on("click", switchPlayer);
 
-  // initialize the game with options selected by user in modal
-  $("a.modal-close").on("click", initGame);
+  
 
   // pop ups on hover over buttons
   $('.tooltipped').tooltip();

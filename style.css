@@ -56,6 +56,12 @@ a {
   filter: invert(100%);
 }
 
+.win-msg {
+  border-radius: 20px;
+  color: white;
+  padding: 10px;
+}
+
 @media (max-width: 600px) {
   .item {
   width: 40px;
