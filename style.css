@@ -56,10 +56,6 @@ a {
   filter: invert(100%);
 }
 
-label {
-  text-decoration: none;
-}
-
 @media (max-width: 600px) {
   .item {
   width: 40px;
