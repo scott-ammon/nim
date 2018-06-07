@@ -19,8 +19,8 @@
       <h4>Nim</h4>
       <p>Nim is a mathematical strategy game. Players take turns removing as many items as they wish from one single pile. The player left to remove the last item loses!</p><br>
       <p>Select Game Mode:</p>
-      <h4 class="btn mode-human red darken-2">Two Player</h4>
-      <h4 class="btn mode-comp red darken-2">vs. Computer</h4><br><br>
+      <label><input class="with-gap" name="game-mode" value="two-player" type="radio" checked/><span>Two Player</span></label>
+      <label><input class="with-gap" name="game-mode" value="computer" type="radio"/><span>vs. Computer</span></label><br><br>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect btn-flat">Play!</a>
@@ -40,6 +40,7 @@
     </div>
   </nav>
 
+  <!-- Materialize nav bar for small devices -->
   <ul class="sidenav" id="mobile-demo">
     <li><a class="reset">Reset</a></li>
     <li><a href="index.html">Game Mode</a></li>

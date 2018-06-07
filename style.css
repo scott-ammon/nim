@@ -41,6 +41,7 @@ main {
   align-items: center;
 }
 
+.btn,
 .btn-large {
   border-radius: 10px;
 }
@@ -53,6 +54,10 @@ a {
   width: 30px;
   height: 30px;
   filter: invert(100%);
+}
+
+label {
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {

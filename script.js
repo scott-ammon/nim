@@ -55,7 +55,7 @@ var runWinSequence = function() {
   // hide last remaining item
   setTimeout(function() {
     $('.item').fadeOut();
-    setTimeout(function() { $('.heap-two').append("<h1>" + playerName + " wins!</h1>"); }, 500);
+    setTimeout(function() { $('.heap-one').append("<h1>" + playerName + " wins!</h1>"); }, 500);
   },500);
 };
 
@@ -269,19 +269,24 @@ var removeItem = function() {
 $(document).ready(function() {
   // initialize and open the modal on page load
   $('.modal').modal({'opacity': 0.75});
+  // initialize modal with two player name inputs
+  $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
 
-  // event listeners for buttons in the modal window
-  $('.mode-human').on("click", function() {
-    aiMode = false;
-    $('.modal-content').append("<label>Player 1 Name:<input type='text' name='player-one'></label><label>Player 2 Name:<input type='text' name='player-two'></label>");
-  });
-
-  $('.mode-comp').on("click", function() {
-    aiMode = true;
-    $('.modal-content').append("<label>Your Name:<input type='text' name='player-one'>");
+  // event listener for radio buttons
+  $("input[type='radio'").on("click", function() {
+    if($(this).val() === "two-player") {
+      aiMode = false;
+      $('.players').remove();
+      $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
+    } else {
+      aiMode = true;
+      $('.players').remove();
+      $('.modal-content').append("<label class='players'>Your Name:<input type='text' name='player-one'>");
+    }
   });
   
   $('.modal').modal('open');
+
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
   // reset the gameboard
