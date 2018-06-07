@@ -150,21 +150,25 @@ var aiPlayTurn = function() {
   var quantityRemoved = 0;
   var itr = 0;
 
+  var idString = "#" + itemIds[heapName][itr];
+  console.log(idString);
+
+  $(idString).triggerHandler("click");
   //remove correct quantity of children
-  while(quantityRemoved < quantityToRemove) {
+  // while(quantityRemoved < quantityToRemove) {
+    
+  //   console.log($('#'+itemIds[heapName][itr]));
 
-    console.log($('#'+itemIds[heapName][itr]));
-
-    if($('#'+itemIds[heapName][itr]).css("display") != 'none') {
-      $('#'+itemIds[heapName][itr]).triggerHandler("click");
-      quantityRemoved++;
-      console.log(quantityRemoved);
-      if(itr > heapObj[heapName]) {
-        itr = 0;
-      }
-    }
-    itr++;
-  }
+  //   if($('#'+itemIds[heapName][itr]).css("display") != 'none') {
+  //     $('#'+itemIds[heapName][itr]).triggerHandler("click");
+  //     quantityRemoved++;
+  //     console.log(quantityRemoved);
+  //     if(itr > heapObj[heapName]) {
+  //       itr = 0;
+  //     }
+  //   }
+  //   itr++;
+  // }
 
   // switch player button when computer is done taking turn
   player = 1;
@@ -200,12 +204,13 @@ var switchPlayer = function() {
     }
   }
 
+  // reset move boolean for next player to choose from any heap
+  itemRemoved = false;
+
   if(aiMode && player === 2) {
     aiPlayTurn();
   }
-
-  // reset move boolean for next player to choose from any heap
-  itemRemoved = false;
+  
 };
 
 var removeItem = function() {
@@ -217,6 +222,10 @@ var removeItem = function() {
     selectedHeap = $(this).parent().attr('id');
     itemRemoved = true;
   }
+
+  console.log('selectedHeap = ', selectedHeap);
+  console.log($(this).parent().attr('id'));
+  console.log($(this).attr('id'));
 
   // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
