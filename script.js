@@ -131,6 +131,10 @@ var aiComputeMove = function() {
 // this function calls the aiComputeMove and then plays the calculated moves
 var aiPlayTurn = function() {
   
+  var maxHeaps = { "heap-one": 3,
+                   "heap-two": 5,
+                   "heap-three": 7
+  };
   var itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
                   "heap-two": ["h2-1", "h2-2", "h2-3", "h2-4", "h2-5"],
                   "heap-three": ["h3-1", "h3-2", "h3-3", "h3-4", "h3-5", "h3-6", "h3-7"]
@@ -156,14 +160,16 @@ var aiPlayTurn = function() {
   while(quantityRemoved < quantityToRemove) {
     
     idString = "#" + itemIds[heapName][itr];
-    console.log(idString);
+    console.log('idString: ', idString, 'itr: ', itr);
 
     if($(idString).css("display") != 'none') {
 
       $(idString).triggerHandler("click");
       quantityRemoved++;
 
-      if(itr > heapObj[heapName]) {
+      // if you reach end of the heap, loop back to beginning
+      // this handles case where someone pulls from the middle
+      if(itr > maxHeaps[heapName]) {
         itr = 0;
       }
     }
