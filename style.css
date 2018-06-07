@@ -54,3 +54,9 @@ a {
   height: 30px;
   filter: invert(100%);
 }
+
+@media (max-width: 450px) {
+  .switch-player {
+    font-size: 40px;
+  }
+}

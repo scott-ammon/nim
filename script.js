@@ -29,7 +29,7 @@ var initGame = function() {
 var resetGame = function() {
   // remove the win message from previous game
   $('h1').remove();
-
+  $('.item').show();
   player = 1;
   gameOver = false;
 
@@ -103,7 +103,7 @@ var aiComputeMove = function() {
     return itemsToRemove;
   }
 
-  // reduce method with exponents returns the binary digital sum!
+  // reduce method with exponential returns the binary digital sum!
   var binarySum = heapArray.reduce(function(x, y) { return x^y;});
 
   // get nim sums of each heap and the binarySum
@@ -144,7 +144,6 @@ var aiPlayTurn = function() {
 
   // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
-
   console.log("Computer wants to remove: ", itemsToRemove);
 
   // get the name of the heap to match the class of the divs in html
@@ -184,7 +183,6 @@ var aiPlayTurn = function() {
   if(heapSum === 1 && !gameOver) {
     gameOver = true;
     runWinSequence();
-    console.log('here!');
   }
 
   // switch player button when computer is done taking turn
@@ -205,7 +203,6 @@ var switchPlayer = function() {
 
     if(heapSum === 1) {
       gameOver = true;
-      console.log('this win sequence...');
       runWinSequence();
     }
 
@@ -225,11 +222,13 @@ var switchPlayer = function() {
   // reset move boolean for next player to choose from any heap
   itemRemoved = false;
 
-  if(aiMode && player === 2) {
-    aiPlayTurn();
-    itemRemoved = false;
-  }
-
+  // timeout makes the computer take a second to play its turn
+  setTimeout(function() {
+    if(aiMode && player === 2) {
+      aiPlayTurn();
+      itemRemoved = false;
+    }
+  }, 1000);
 };
 
 var removeItem = function() {
@@ -293,7 +292,10 @@ $(document).ready(function() {
   // initialize the game with options selected by user in modal
   $("a.modal-close").on("click", initGame);
 
+  // pop ups on hover over buttons
   $('.tooltipped').tooltip();
+
+  // Materialize command to create pop-out menu in small size
   $('.sidenav').sidenav();
 
 });
