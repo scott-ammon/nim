@@ -1,5 +1,7 @@
 /* ======= Main Content Styles ======= */
+
 body {
+  cursor: pointer;
   background-image: url("img/back1.jpg");
   background-size: cover;
   display: flex;
