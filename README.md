@@ -16,7 +16,7 @@ As I progressed through the development and checked off items from the Trello bo
 
 ![gameboard](img/gameboard.png?raw=true)
 
-By using Materialize, the responsivess was basically handled automatically. I only had to add in one media query to adjust the individual game pieces to show up properly on mobile size screens. Below is a screenshot of an iPhone 6/7/8 size:
+By using Materialize, the responsiveness was basically handled automatically. I only had to add one media query to adjust individual game pieces to show up properly on mobile screens. Below is a screenshot of an iPhone 6/7/8 size:
 
 ![responsive](img/responsive.png?raw=true)
 
