@@ -300,7 +300,8 @@ $(document).ready(function() {
 
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
-
+  $(".item").on("tap", removeItem);
+  
   // reset the gameboard
   $(".reset").on("click", resetGame);
 
