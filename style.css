@@ -1,6 +1,9 @@
 /* ======= Main Content Styles ======= */
-body {
+.clickable {
   cursor: pointer;
+}
+
+body {
   background-image: url("img/back1.jpg");
   background-size: cover;
   display: flex;
