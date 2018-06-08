@@ -1,13 +1,41 @@
 /* ======= Main Content Styles ======= */
 body {
-  background-color: #fffddf;
+  background-image: url("img/back1.jpg");
+  background-size: cover;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "Raleway";
 }
 
 main {
   flex: 1 0 auto;
+}
+
+.instructions {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+}
+
+h4 {
+  font-family: "Permanent Marker";
+}
+
+nav {
+  background-color: #0F3D5B;
+  box-shadow: 0 2px 15px 6px #000;
+}
+
+.page-footer {
+  background-color: #0F3D5B;
+}
+
+a {
+  margin: 0 5px;
+}
+
+.game-title {
+  font-family: "Permanent Marker";
 }
 
 .item {
@@ -15,6 +43,7 @@ main {
   height: 75px;
   border-radius: 50%;
   margin: .5em;
+  box-shadow: 5px 10px 18px #000;
 }
 
 .gameboard {
@@ -24,6 +53,8 @@ main {
   position: relative;
   min-height: 50vh;
   margin-top: 10%;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* Positioning for each heap */
@@ -33,6 +64,10 @@ main {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.heap-one > .item {
+  background-color: #32DB49;
 }
 
 .button-panel {
@@ -46,13 +81,9 @@ main {
   border-radius: 10px;
 }
 
-a {
-  margin: 0 5px 5px 5px;
-}
-
 .logo {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   filter: invert(100%);
 }
 
@@ -61,11 +92,11 @@ a {
   justify-content: center;
   align-content: center;
   border-radius: 20px;
-  color: white;
+  color: #222;
   padding: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .item {
   width: 40px;
   height: 40px;
@@ -74,6 +105,6 @@ a {
   }
 
   .switch-player {
-    font-size: 20px;
+    font-size: 14px;
   }
 }

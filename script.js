@@ -54,7 +54,7 @@ var runWinSequence = function() {
   // hide last remaining item and display win message after item fade out
   setTimeout(function() {
     // $('.item').fadeOut();
-    setTimeout(function() { $('.gameboard').append("<h3 class='win-msg blue-grey darken-4'>" + playerName + " wins!</h3>"); }, 500);
+    setTimeout(function() { $('.gameboard').append("<h3 class='win-msg'>" + playerName + " wins!</h3>"); }, 500);
   },500);
 };
 
@@ -132,18 +132,21 @@ var aiComputeMove = function() {
 // this function calls the aiComputeMove and then plays the calculated moves
 var aiPlayTurn = function() {
   
-  var maxHeaps = { "heap-one": 3,
+  // local version of heapObj but always contains max size of each heap
+  const maxHeaps = { "heap-one": 3,
                    "heap-two": 5,
                    "heap-three": 7
   };
-  var itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
+
+  // associated with each item id attribute from index.html
+  const itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
                   "heap-two": ["h2-1", "h2-2", "h2-3", "h2-4", "h2-5"],
                   "heap-three": ["h3-1", "h3-2", "h3-3", "h3-4", "h3-5", "h3-6", "h3-7"]
                 };
 
   // function returns object with the heap to pull from, and how many to pull
   var itemsToRemove = aiComputeMove();
-  console.log("Computer wants to remove: ", itemsToRemove);
+  console.log("Computer will remove: ", itemsToRemove);
 
   // get the name of the heap to match the class of the divs in html
   var heapKeys = Object.keys(heapObj);
@@ -250,15 +253,8 @@ var removeItem = function() {
 
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
-      // check if the player removed the final item themselves! (stupid move)
-      if(heapSum === 0) {
-        gameOver = true;
-        player === 1 ? player = 2 : player = 1;
-        runWinSequence();
-      } else {
-        switchPlayer();
-      }
-    }
+      switchPlayer();
+    } 
   } else {
     // case where user selects an item from a second heap during a turn
     M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});

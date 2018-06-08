@@ -4,6 +4,7 @@
   <title>Unit1 Game</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link src="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -14,7 +15,7 @@
 
   <nav class="blue-grey darken-4">
     <div class="nav-wrapper">
-      <a class="brand-logo center">nim</a>
+      <a class="brand-logo center game-title">nim</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Back to Game</a></li>
@@ -27,7 +28,7 @@
   </ul>
 
   <!-- Divs to contain each heap item -->
-  <main class="container flow-text">
+  <main class="instructions container flow-text">
     <h3>How to Play</h3>
     <h5>Nim is a mathematical strategy game!</h5>
 
@@ -37,7 +38,7 @@
     <p>The player left to remove the final item on the board loses!</p>
     <br>
     <h5>Playing the computer...</h5>
-    <p>The computer player implements an algorithm using the binary digital sum of each pile of items to determine the optimal move. Good luck beating it...</p>
+    <p>The computer player implements an algorithm to reduce the binary digital sum (also called a nim-sum) of items to 0 which guarantees a win unless you play perfectly!</p>
 
   </main>
   
