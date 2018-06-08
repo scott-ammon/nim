@@ -300,6 +300,8 @@ $(document).ready(function() {
 
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
+  // for mobile touches to activate the function
+  $('item').bind("touchstart", removeItem);
   // reset the gameboard
   $(".reset").on("click", resetGame);
   // switch the current player
