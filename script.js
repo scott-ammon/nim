@@ -29,6 +29,7 @@ var initGame = function() {
 var resetGame = function() {
   // remove the win message from previous game
   $('h3').remove();
+  $('brain').remove();
   $('.item').show();
   player = 1;
   gameOver = false;
@@ -50,12 +51,24 @@ var runWinSequence = function() {
     } else {
       var playerName = $('#player-two').text();
     }
+  
+  $('.item').fadeOut(1200);
+  
+  setTimeout(function () {
+    $('.heap-one').hide();
+    $('.heap-two').hide();
 
-  // hide last remaining item and display win message after item fade out
-  setTimeout(function() {
-    // $('.item').fadeOut();
-    setTimeout(function() { $('.gameboard').append("<h3 class='win-msg'>" + playerName + " wins!</h3>"); }, 500);
-  },500);
+    // if either human player won, display their name, otherwise show the ai brain image
+    if(player === 1 || player === 2 && aiMode === false) {
+      $('.heap-two').append("<h3 class='win-msg'>" + playerName + " wins!</h3>");
+    } else {
+      $('.heap-one').append("<img src='img/ai-brain.png' class='brain responsive-img'>");
+      $('.heap-two').append("<h3 class='win-msg'>The AI beat you...</h3>");
+    }
+
+    $('.heap-one').fadeIn("slow") 
+    $('.heap-two').fadeIn("slow") 
+  }, 1500);
 };
 
 // this function reviews the game board and determines quantity and heap to draw from

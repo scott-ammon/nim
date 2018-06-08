@@ -1,5 +1,4 @@
 /* ======= Main Content Styles ======= */
-
 body {
   cursor: pointer;
   background-image: url("img/back1.jpg");
@@ -15,6 +14,8 @@ main {
 }
 
 .instructions {
+  margin: 5%;
+  padding: 5%;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 30px;
 }
@@ -27,6 +28,7 @@ nav {
   background-color: #0F3D5B;
   box-shadow: 0 2px 15px 6px #000;
 }
+
 
 .page-footer {
   background-color: #0F3D5B;
@@ -48,6 +50,7 @@ a {
   box-shadow: 5px 10px 18px #000;
 }
 
+/* Game board is flex to align game pieces better than Materialize grid */
 .gameboard {
   display: flex;
   flex-direction: column;
