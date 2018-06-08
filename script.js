@@ -180,9 +180,11 @@ var aiPlayTurn = function() {
   }
 
   // switch player button when computer is done taking turn
-  player = 1;
-  $('#player-two').addClass('disabled');
-  $('#player-one').removeClass('disabled');
+  if(!gameOver) {
+    player = 1;
+    $('#player-two').addClass('disabled');
+    $('#player-one').removeClass('disabled');
+  }
 };
 
 var switchPlayer = function() {
@@ -221,7 +223,7 @@ var switchPlayer = function() {
 };
 
 var removeItem = function() {
-  // dismiss all toast messages so they don't stack up
+  // dismiss toast messages so they don't stack up on screen
   M.Toast.dismissAll();
 
   // store heap of player's first clicked object
@@ -240,6 +242,7 @@ var removeItem = function() {
       heapSum += heapObj[heap];
     }
 
+    // if one remaining piece, we have a winner
     if(heapSum === 1 && !gameOver) {
       gameOver = true;
       runWinSequence();
@@ -247,8 +250,7 @@ var removeItem = function() {
 
     // if the heap is emptied, auto switch the player
     if(heapObj[selectedHeap] === 0){
-      // check if the player removed the final item themselves... stupid move!
-      
+      // check if the player removed the final item themselves! (stupid move)
       if(heapSum === 0) {
         gameOver = true;
         player === 1 ? player = 2 : player = 1;
