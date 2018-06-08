@@ -1,8 +1,4 @@
 /* ======= Main Content Styles ======= */
-.clickable {
-  cursor: pointer;
-}
-
 body {
   background-image: url("img/back1.jpg");
   background-size: cover;

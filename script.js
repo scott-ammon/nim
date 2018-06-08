@@ -300,19 +300,16 @@ $(document).ready(function() {
 
   // remove an item when it is clicked on
   $(".item").on("click", removeItem);
-  // for mobile touches to activate the function
-  $('item').bind("touchstart", removeItem);
+
   // reset the gameboard
   $(".reset").on("click", resetGame);
+
   // switch the current player
   $(".switch-player").on("click", switchPlayer);
-
-  
 
   // pop ups on hover over buttons
   $('.tooltipped').tooltip();
 
   // Materialize command to create pop-out menu in small size
   $('.sidenav').sidenav();
-
 });
