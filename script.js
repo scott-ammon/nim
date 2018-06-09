@@ -1,9 +1,10 @@
-var aiMode = false;      // whether computer mode is enabled
-var player = 1;          // tracks current player (1 or 2...2 is also computer)
-var itemRemoved = false; // tracks whether player has made an initial move
-var selectedHeap = null; // tracks which heap the computer should choose from
-var gameOver = false;    // changes on win conditions
-var heapObj = {          // stores item quantity in each heap
+var aiMode = false;         // whether computer mode is enabled
+var player = 1;             // tracks current player (1 or 2...2 is also computer)
+var itemRemoved = false;    // tracks whether player has made an initial move
+var selectedHeap = null;    // tracks which heap the computer should choose from
+var reminderTimeout = null; // timeout handler to clear when player switches
+var gameOver = false;       // changes on win conditions
+var heapObj = {             // stores item quantity in each heap
   "heap-one": 3,
   "heap-two": 5,
   "heap-three": 7
@@ -29,7 +30,7 @@ var initGame = function() {
 var resetGame = function() {
   // remove the win message from previous game
   $('h3').remove();
-  $('brain').remove();
+  $('.brain').remove();
   $('.item').show();
   player = 1;
   gameOver = false;
@@ -52,23 +53,26 @@ var runWinSequence = function() {
       var playerName = $('#player-two').text();
     }
   
-  $('.item').fadeOut(1200);
+  // $('.item').fadeOut(1200);
   
   setTimeout(function () {
-    $('.heap-one').hide();
-    $('.heap-two').hide();
+    $('.item').fadeOut(500);
+    setTimeout(function() {
+      $('.heap-one').hide();
+      $('.heap-two').hide();
 
-    // if either human player won, display their name, otherwise show the ai brain image
-    if(player === 1 || player === 2 && aiMode === false) {
-      $('.heap-two').append("<h3 class='win-msg'>" + playerName + " wins!</h3>");
-    } else {
-      $('.heap-one').append("<img src='img/ai-brain.png' class='brain responsive-img'>");
-      $('.heap-two').append("<h3 class='win-msg'>The AI beat you...</h3>");
-    }
+      // if either human player won, display their name, otherwise show the ai brain image
+      if(player === 1 || player === 2 && aiMode === false) {
+        $('.heap-two').append("<h3 class='win-msg'>" + playerName + " wins!</h3>");
+      } else {
+        $('.heap-one').append("<img src='img/ai-brain.png' class='brain responsive-img'>");
+        $('.heap-two').append("<h3 class='win-msg'>The AI beat you...</h3>");
+      }
 
-    $('.heap-one').fadeIn("slow") 
-    $('.heap-two').fadeIn("slow") 
-  }, 1500);
+      $('.heap-one').fadeIn("slow") 
+      $('.heap-two').fadeIn("slow") 
+    }, 750);
+  }, 1000);
 };
 
 // this function reviews the game board and determines quantity and heap to draw from
@@ -204,7 +208,9 @@ var aiPlayTurn = function() {
 };
 
 var switchPlayer = function() {
-  
+  $('.reminder-msg').hide();
+  clearTimeout(reminderTimeout);
+
   if(!itemRemoved) {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
@@ -246,6 +252,16 @@ var removeItem = function() {
   if(!itemRemoved) {
     selectedHeap = $(this).parent().attr('id');
     itemRemoved = true;
+    
+    if(!aiMode || aiMode && player !== 2) {
+      // display reminder to tap your name to switch players
+      reminderTimeout = setTimeout(function() {
+        $('.reminder-msg').fadeIn(1000);
+        setTimeout(function() {
+        $('.reminder-msg').fadeOut(500);
+        }, 3000);
+      }, 3000);
+    }
   }
 
   // valid move if choosing an item from the same heap
@@ -275,6 +291,7 @@ var removeItem = function() {
 };
 
 $(document).ready(function() {
+  $('.reminder-msg').hide();
   // initialize and open the modal on page load
   $('.modal').modal({'opacity': 0.75});
   // initialize modal with two player name inputs
