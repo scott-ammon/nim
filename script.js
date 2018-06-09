@@ -56,8 +56,6 @@ var runWinSequence = function() {
       var playerName = $('#player-two').text();
     }
   
-  // $('.item').fadeOut(1200);
-  
   setTimeout(function () {
     $('.item').fadeOut(500);
     setTimeout(function() {
