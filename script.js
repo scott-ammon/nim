@@ -299,17 +299,17 @@ $(document).ready(function() {
   $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
 
   // event listener for radio buttons
-  $("input[name='game-mode'").on("click", function() {
-    if($(this).val() === "two-player") {
-      aiMode = false;
-      $('.players').remove();
-      $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
-    } else {
-      aiMode = true;
-      $('.players').remove();
-      $('.modal-content').append("<label class='players'>Your Name:<input type='text' name='player-one'>");
-    }
-  });
+  // $("input[name='game-mode'").on("click", function() {
+  //   if($(this).val() === "two-player") {
+  //     aiMode = false;
+  //     $('.players').remove();
+  //     $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
+  //   } else {
+  //     aiMode = true;
+  //     $('.players').remove();
+  //     $('.modal-content').append("<label class='players'>Your Name:<input type='text' name='player-one'>");
+  //   }
+  // });
   
   $('.modal').modal('open');
 
