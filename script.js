@@ -295,21 +295,23 @@ $(document).ready(function() {
   $('.reminder-msg').hide();
   // initialize and open the modal on page load
   $('.modal').modal({'opacity': 0.75});
-  // initialize modal with two player name inputs
-  $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
-
-  // event listener for radio buttons
-  // $("input[name='game-mode'").on("click", function() {
-  //   if($(this).val() === "two-player") {
-  //     aiMode = false;
-  //     $('.players').remove();
-  //     $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
-  //   } else {
-  //     aiMode = true;
-  //     $('.players').remove();
-  //     $('.modal-content').append("<label class='players'>Your Name:<input type='text' name='player-one'>");
-  //   }
-  // });
+  
+  // event listener for game mode buttons
+  $(".game-mode").on("click", function() {
+    if($(this).hasClass("two-player")) {
+      $(this).css("border","2px solid black");
+      $(".computer").css("border","none");
+      aiMode = false;
+      $('.players').remove();
+      $('.modal-content').append("<label class='players'>Player 1 Name:<input type='text' name='player-one'></label><label class='players'>Player 2 Name:<input type='text' name='player-two'></label>");
+    } else {
+      $(this).css("border","2px solid black");
+      $(".two-player").css("border","none");
+      aiMode = true;
+      $('.players').remove();
+      $('.modal-content').append("<label class='players'>Your Name:<input type='text' name='player-one'>");
+    }
+  });
   
   $('.modal').modal('open');
 

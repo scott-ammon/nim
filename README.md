@@ -7,7 +7,6 @@ The first step was wireframing the basic layout of the game, which I drew in Ado
 
 ![wireframe](img/project1-wireframe.png?raw=true)
 
-
 I wanted to break this game down into solvable pieces, and ensure that each phase worked well before moving on to the next. The first logical step was to create the simple 2 player version that alternates between turns and checks for a win. In order to plan out the creation of the game, I've been tracking certain pieces on a Trello board, shown below in the in-progress state.
 
 ![trello](img/trello.png?raw=true)
@@ -16,9 +15,17 @@ As I progressed through the development and checked off items from the Trello bo
 
 ![gameboard](img/gameboard.png?raw=true)
 
-By using Materialize, the responsiveness was basically handled automatically. I only had to add one media query to adjust individual game pieces to show up properly on mobile screens. Below is a screenshot of an iPhone 6/7/8 size:
+(add section about modifying layout here)
 
-![responsive](img/responsive.png?raw=true)
+![final-menu](img/final-menu.png?raw=true)
+
+![final-layout](img/final.png?raw=true)
+
+By using Materialize, the responsiveness was basically handled automatically. I only had to add a media query to adjust individual game pieces to show up properly on mobile screens and adjust the font sizes of some buttons. Below is a screenshot of an iPhone 6/7/8 size:
+
+![responsive-menu](img/responsive-menu.png?raw=true)
+
+![responsive-final](img/responsive-final.png?raw=true)
 
 I decided to implement a computer player that is able to beat a human player under the 'misere' style of playing conditions - where the player who has to remove the last piece is the loser. This makes it more difficult than normal game play where the player who takes the last piece wins, which I'll explain further on. First, the correct game moves can be determined using something called a 'nim-sum' which is actually a binary digital sum of the quantities of items in each pile. 
 
