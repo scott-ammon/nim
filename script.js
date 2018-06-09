@@ -47,6 +47,9 @@ var runWinSequence = function() {
   // disable player switching buttons since game is over
   $('.switch-player').addClass('disabled');
 
+  $('.reminder-msg').hide();
+  clearTimeout(reminderTimeout);
+
   if(player === 1) {
       var playerName = $('#player-one').text();
     } else {
@@ -215,9 +218,9 @@ var switchPlayer = function() {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
     var heapSum = 0;
-    for(heap in heapObj) {
-      heapSum += heapObj[heap];
-    }
+    // for(heap in heapObj) {
+    //   heapSum += heapObj[heap];
+    // }
 
     if(!gameOver) {
       if(player === 1) {

@@ -6,14 +6,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link src="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
 <body>
 
-  <nav class="blue-grey darken-4">
+  <nav>
     <div class="nav-wrapper">
       <a class="brand-logo center game-title">nim</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -37,17 +35,15 @@
     <p>You may remove as many items from that single pile as you wish. When you have removed as many items as you wish, press your name to switch players.</p>
     <p>The player left to remove the final item on the board loses!</p>
     <h5>Playing the computer...</h5>
-    <p>The computer player implements an algorithm to reduce the binary digital sum (also called a nim-sum) of items to 0 which guarantees a win unless you play perfectly!</p>
+    <p>The computer player implements an algorithm to reduce the binary digital sum (also called a nim-sum) of items to 0 on each turn which guarantees a win unless you play perfectly!</p>
 
   </main>
   
   <!-- Materialize footer with links -->
-  <footer class="page-footer blue-grey darken-4">
-      <div>
+  <footer class="page-footer">
         <a class="grey-text text-lighten-4" href="https://www.scottammon.com">&copy 2018 Scott Ammon</a>
         <a class="grey-text text-lighten-4 right" href="https://github.com/scott-ammon"><img src="img/github.svg" class="logo responsive-img"></a>
         <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/scottammon"><img src="img/linkedin.png" class="logo responsive-img"></a>
-      </div>
   </footer>
 
   <script src="script.js"></script>
