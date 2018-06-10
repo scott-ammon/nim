@@ -88,7 +88,7 @@ var aiComputeMove = function() {
       heapArray.push(heapObj[heap]);
   }
 
-  // check if possible to make odd number of heaps with one item in each
+  // check how many piles are greater than 1 (to see if you can reduce to odd number of 1-piles)
   var largeHeap = 0;
   for(let i = 0; i < heapArray.length; i++) {
     if(heapArray[i] > 1) {
