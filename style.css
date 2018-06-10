@@ -1,9 +1,9 @@
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-image: url("img/back1.jpg");
   background-size: cover;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
   font-family: "Raleway";
 }
 
@@ -53,10 +53,10 @@ a {
 
 /* Styles for each game piece in each heap */
 .item {
+  margin: .5em;
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  margin: .5em;
   box-shadow: 5px 10px 18px #000;
 }
 
@@ -106,13 +106,13 @@ a {
   border-radius: 30px;
 }
 
-/* Media query for mobile to fix the game pieces and text*/
+/* Media query for mobile to adjust the game pieces and text*/
 @media (max-width: 800px) {
   .item {
+  margin: .1em;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin: .1em;
   }
 
   .win-msg {

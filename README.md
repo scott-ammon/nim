@@ -1,7 +1,9 @@
-# unit1-game
-General Assembly Unit 1 Project - Nim Game
+# Nim - A Math Strategy Game
+## General Assembly Unit 1 Project
 
-For our first project deliverable, I'm building a version of Nim, a simple mathematical strategy game where players take turns removing items from three distinct piles. Players can remove as many items from one single pile during a turn. The player who is left to remove the last remaining piece loses. It's a simple game to play, but involves some interesting math to calculate the optimal move on each turn which lends itself well to this first project. 
+### Description
+
+For our first project deliverable, I built a version of Nim, a simple mathematical strategy game where players take turns removing items from three distinct piles. Players can remove as many items from one single pile during a turn. The player who is left to remove the last remaining piece loses. It's a simple game to play, but involves some interesting math to calculate the optimal move on each turn which lends itself well to this first project. 
 
 The first step was wireframing the basic layout of the game, which I drew in Adobe Sketch on my iPad. This makes it really easy to visualize the HTML layout and determine element placement. I'm also using Materialize for the first time, so figuring out what classes to add in order to acheive the visual appearance took some time. I wanted a really clean and simple layout that looks professional, as well as looking good on mobile. 
 
@@ -11,13 +13,18 @@ Once it was time to start coding, I wanted to break this game down into solvable
 
 ![trello](img/trello.png?raw=true)
 
-As I progressed through the development and checked off items from the Trello board, I finally reached a minimum viable product. The image below shows the first iteration of the game which implements a simple two player functionality. I kept the design simple, and didn't spend much time on the visual design at this point since I wanted to focus on building up the logic.
+### Minimum Viable Product (MVP)
+
+As I progressed through the development and checked off items from the Trello board, I reached a minimum viable product. The image below shows the first iteration of the game which implements a simple two player functionality. I kept the design simple, and didn't spend much time on the visual design at this point since I wanted to focus on building up the logic.
 
 ![gameboard](img/gameboard.png?raw=true)
 
+
+### Creating the AI Player
+
 After building the two-player version, I decided to implement a computer player that is able to beat a human player under the 'misere' style of playing conditions. 'Misere' represents the style where the player who is left to remove the last piece is the loser. This is programmatically more difficult than normal game play where the player who takes the last piece wins, which I'll explain further on.
 
-Game Logic:
+#### Game Logic:
 
 The correct game moves can be determined using something called a 'nim-sum' which is the binary digital sum of the quantities of items in each pile. I initially thought I would have to convert each pile quantity into a binary number, and then write a function to calculate the digital sum (not the same as addition). After a lot of brainstorming and googling, I found out that the JavaScript array reduce method could simplify this process for me. Raising the accumulator to the power of the next item passed into the reduce function will actually resolve to the binary digital sum!
 
@@ -40,6 +47,8 @@ I struggled with the organization of this code block, so pseudocode helped to br
 
 One element I am proud of in this code is creating a separate "aiComputeMove" function to make this modular. Essentially, I can write another different algorithm for the computer player, and replace the existing function without affecting the remainder of the game. The only requirement is that I return an object that identifies the heap and quantity to remove using the syntax in the aiPlayTurn function. Eventually, I'd like to try and implement more difficult algorithms to calculate moves (although the method used here is simple, it is guaranteed to win...).
 
+### Polishing the Layout
+
 Finally, after completing the computer player logic, I reworked some CSS and Materialize properties to give the game a more polished appearance. The screenshots below show the revised layout in both a mobile and desktop version.
 
 ![final-menu](img/final-menu.png?raw=true)
@@ -52,5 +61,14 @@ By using Materialize, the responsiveness was basically handled automatically. I 
 
 ![responsive-final](img/responsive-final.png?raw=true)
 
+### Result and Next Steps
+
 Overall, I'm pleased with the way the game turned out, although there are some bugs that need to be worked out. For example, the most difficult part was determining why the game would not load on mobile initially. It turns out, I was using Materialize radio buttons, which don't register properly with jQuery. I plugged my phone into my laptop, and pulled up the JavaScript console which logged that jQuery was throwing a syntax error for input[type="radio"]. Although there may be some ways to work around this, in my limited time I replaced the radio buttons with actual buttons, and this allowed the game to load and the Materialize modal to function. The only remaining issue is that the game sometimes snags near the end and no longer allows clicking on screen buttons. I hope to troubleshoot that shortly, as the mobile version is the most fun to play!
+
+Future items i'd like to implement are:
+
+* Adjust modals to perhaps only open on button click for new game instead of page load
+* Another AI mode that uses minimax or another algorithm to determine gameplay
+* Better mobile experience that handles Materialize radio buttons
+* More advanced animations on win state and player switching
 

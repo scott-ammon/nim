@@ -32,21 +32,22 @@ var resetGame = function() {
   $('h3').remove();
   $('.brain').remove();
   $('.item').show();
-  player = 1;
-  gameOver = false;
-
-  heapObj['heap-one'] = 3;
-  heapObj['heap-two'] = 5;
-  heapObj['heap-three'] = 7;
 
   $('#player-one').removeClass('disabled');
   $('#player-two').addClass('disabled');
+
+  player = 1;
+  gameOver = false;
+  heapObj['heap-one'] = 3;
+  heapObj['heap-two'] = 5;
+  heapObj['heap-three'] = 7;
 };
 
 var runWinSequence = function() {
   // disable player switching buttons since game is over
   $('.switch-player').addClass('disabled');
 
+  // close reminder message since game is over
   $('.reminder-msg').hide();
   clearTimeout(reminderTimeout);
 
@@ -56,6 +57,7 @@ var runWinSequence = function() {
       var playerName = $('#player-two').text();
     }
   
+  // fade out remaining game piece so winner can be displayed
   setTimeout(function () {
     $('.item').fadeOut(500);
     setTimeout(function() {
@@ -69,7 +71,6 @@ var runWinSequence = function() {
         $('.heap-one').append("<img src='img/ai-brain.png' class='brain responsive-img'>");
         $('.heap-two').append("<h3 class='win-msg'>The AI beat you...</h3>");
       }
-
       $('.heap-one').fadeIn("slow") 
       $('.heap-two').fadeIn("slow") 
     }, 750);
@@ -151,13 +152,13 @@ var aiComputeMove = function() {
 var aiPlayTurn = function() {
   
   // local version of heapObj but always contains max size of each heap
-  const maxHeaps = { "heap-one": 3,
+  var maxHeaps = { "heap-one": 3,
                    "heap-two": 5,
                    "heap-three": 7
   };
 
   // associated with each item id attribute from index.html
-  const itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
+  var itemIds = { "heap-one": ["h1-1", "h1-2", "h1-3"],
                   "heap-two": ["h2-1", "h2-2", "h2-3", "h2-4", "h2-5"],
                   "heap-three": ["h3-1", "h3-2", "h3-3", "h3-4", "h3-5", "h3-6", "h3-7"]
                 };
@@ -193,7 +194,7 @@ var aiPlayTurn = function() {
       itr = 0;
     }
     itr++;
-  };
+  }
 
   var heapSum = 0;
   for(heap in heapObj) {
@@ -216,9 +217,6 @@ var switchPlayer = function() {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
     var heapSum = 0;
-    // for(heap in heapObj) {
-    //   heapSum += heapObj[heap];
-    // }
 
     if(!gameOver) {
       if(player === 1) {
