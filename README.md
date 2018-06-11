@@ -2,6 +2,13 @@
 ## General Assembly Unit 1 Project
 Play online: https://scott-ammon.github.io/unit1-game/
 
+### This game was developed with:
+* HTML
+* CSS
+* JavaScript
+* jQuery
+* Materialize
+
 ### Description
 
 For our first project deliverable, I built a version of Nim, a simple mathematical strategy game where players take turns removing items from three distinct piles. Players can remove as many items from one single pile during a turn. The player who is left to remove the last remaining piece loses. It's a simple game to play, but involves some interesting math to calculate the optimal move on each turn which lends itself well to this first project. 
@@ -16,7 +23,7 @@ Once it was time to start coding, I wanted to break this game down into solvable
 
 ### Minimum Viable Product (MVP)
 
-As I progressed through the development and checked off items from the Trello board, I reached a minimum viable product. The image below shows the first iteration of the game which implements a simple two player functionality. I kept the design simple, and didn't spend much time on the visual design at this point since I wanted to focus on building up the logic.
+As I progressed through the development and checked off items from the Trello board, I reached a minimum viable product. The image below shows the first iteration of the game which implements a simple two player functionality. I kept the design simple, and didn't spend much time on the visual design at this point since I wanted to focus on building up the logic. I decided to use jQuery to simplify the selection of items on the gameboard. I learned that I actually feel more comfortable using vanilla JS, as it's less abstracted which makes it easier to see what the code is doing. With jQuery, there is more implementation behind the scenes that certainly helps me be concise as a developer, but the extra layer of abstraction is not something I'm necessarily fond of.
 
 ![gameboard](img/gameboard.png?raw=true)
 
