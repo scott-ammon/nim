@@ -33,6 +33,8 @@ var resetGame = function() {
   $('.brain').remove();
   $('.item').show();
 
+  clearTimeout(reminderTimeout);
+
   $('#player-one').removeClass('disabled');
   $('#player-two').addClass('disabled');
 
