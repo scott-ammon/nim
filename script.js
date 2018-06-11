@@ -41,6 +41,8 @@ var resetGame = function() {
   heapObj['heap-one'] = 3;
   heapObj['heap-two'] = 5;
   heapObj['heap-three'] = 7;
+  itemRemoved = false;
+  selectedHeap = null;
 };
 
 var runWinSequence = function() {
