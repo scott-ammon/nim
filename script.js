@@ -168,49 +168,49 @@ var aiPlayTurn = function() {
                 };
 
   // function returns object with the heap to pull from, and how many to pull
-  var itemsToRemove = aiComputeMove();
-  console.log("Computer will remove: ", itemsToRemove);
-
-  // get the name of the heap to match the class of the divs in html
-  var heapKeys = Object.keys(heapObj);
-  var heapName = heapKeys[itemsToRemove["heap-index"]];
-
-  var quantityToRemove = itemsToRemove["quantity"];
-
-  var quantityRemoved = 0;
-  var itr = 0;
-
-  var idString = '';
-
-  // remove correct quantity of children
-  while(quantityRemoved < quantityToRemove) {
-    
-    idString = "#" + itemIds[heapName][itr];
-
-    if($(idString).css("display") != 'none') {
-
-      $(idString).triggerHandler("click");
-      quantityRemoved++;
-    }
-    // if you reach end of the heap, loop back to beginning
-    // this handles case where someone pulls from the middle
-    if(itr > maxHeaps[heapName]) {
-      itr = 0;
-    }
-    itr++;
-  }
-
-  var heapSum = 0;
-  for(heap in heapObj) {
-    heapSum += heapObj[heap];
-  }
-
-  // switch player button when computer is done taking turn
   if(!gameOver) {
-    player = 1;
-    $('#player-two').addClass('disabled');
-    $('#player-one').removeClass('disabled');
+    var itemsToRemove = aiComputeMove();
+    console.log("Computer will remove: ", itemsToRemove);
+
+
+    // get the name of the heap to match the class of the divs in html
+    var heapKeys = Object.keys(heapObj);
+    var heapName = heapKeys[itemsToRemove["heap-index"]];
+
+    var quantityToRemove = itemsToRemove["quantity"];
+
+    var quantityRemoved = 0;
+    var itr = 0;
+
+    var idString = '';
+
+    // remove correct quantity of children
+    while(quantityRemoved < quantityToRemove) {
+      
+      idString = "#" + itemIds[heapName][itr];
+
+      if($(idString).css("display") != 'none') {
+
+        $(idString).triggerHandler("click");
+        quantityRemoved++;
+      }
+      // if you reach end of the heap, loop back to beginning
+      // this handles case where someone pulls from the middle
+      if(itr > maxHeaps[heapName]) {
+        itr = 0;
+      }
+      itr++;
+    }
+
+    var heapSum = 0;
+    for(heap in heapObj) {
+      heapSum += heapObj[heap];
+    }
   }
+  // switch player button when computer is done taking turn
+  player = 1;
+  $('#player-two').addClass('disabled');
+  $('#player-one').removeClass('disabled');
 };
 
 var switchPlayer = function() {
