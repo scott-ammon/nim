@@ -273,7 +273,7 @@ var removeItem = function() {
   // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
     heapObj[selectedHeap]--;
-    $(this).hide(500);
+    $(this).hide();
 
     var heapSum = 0;
     for(heap in heapObj) {
