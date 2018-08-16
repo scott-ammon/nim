@@ -67,7 +67,8 @@ var runWinSequence = function() {
     setTimeout(function() {
       $('.heap-one').hide();
       $('.heap-two').hide();
-
+      
+      console.log("player is: ", player);
       // if either human player won, display their name, otherwise show the ai brain image
       if(player === 1 || player === 2 && aiMode === false) {
         $('.heap-two').append("<h3 class='win-msg'>" + playerName + " wins!</h3>");
@@ -168,59 +169,61 @@ var aiPlayTurn = function() {
                 };
 
   // function returns object with the heap to pull from, and how many to pull
-  if(!gameOver) {
-    var itemsToRemove = aiComputeMove();
-    console.log("Computer will remove: ", itemsToRemove);
+  var itemsToRemove = aiComputeMove();
+  console.log("Computer will remove: ", itemsToRemove);
 
 
-    // get the name of the heap to match the class of the divs in html
-    var heapKeys = Object.keys(heapObj);
-    var heapName = heapKeys[itemsToRemove["heap-index"]];
+  // get the name of the heap to match the class of the divs in html
+  var heapKeys = Object.keys(heapObj);
+  var heapName = heapKeys[itemsToRemove["heap-index"]];
 
-    var quantityToRemove = itemsToRemove["quantity"];
+  var quantityToRemove = itemsToRemove["quantity"];
 
-    var quantityRemoved = 0;
-    var itr = 0;
+  var quantityRemoved = 0;
+  var itr = 0;
 
-    var idString = '';
+  var idString = '';
 
-    // remove correct quantity of children
-    while(quantityRemoved < quantityToRemove) {
-      
-      idString = "#" + itemIds[heapName][itr];
+  // remove correct quantity of children
+  while(quantityRemoved < quantityToRemove) {
+    
+    idString = "#" + itemIds[heapName][itr];
 
-      if($(idString).css("display") != 'none') {
+    if($(idString).css("display") != 'none') {
 
-        $(idString).triggerHandler("click");
-        quantityRemoved++;
-      }
-      // if you reach end of the heap, loop back to beginning
-      // this handles case where someone pulls from the middle
-      if(itr > maxHeaps[heapName]) {
-        itr = 0;
-      }
-      itr++;
+      $(idString).triggerHandler("click");
+      quantityRemoved++;
     }
-
-    var heapSum = 0;
-    for(heap in heapObj) {
-      heapSum += heapObj[heap];
+    // if you reach end of the heap, loop back to beginning
+    // this handles case where someone pulls from the middle
+    if(itr > maxHeaps[heapName]) {
+      itr = 0;
     }
+    itr++;
   }
+
+  var heapSum = 0;
+  for(heap in heapObj) {
+    heapSum += heapObj[heap];
+  }
+
   // switch player button when computer is done taking turn
-  player = 1;
-  $('#player-two').addClass('disabled');
-  $('#player-one').removeClass('disabled');
+  if(!gameOver) {
+    player = 1;
+    $('#player-two').addClass('disabled');
+    $('#player-one').removeClass('disabled');
+  }
+
 };
 
 var switchPlayer = function() {
   $('.reminder-msg').hide();
   clearTimeout(reminderTimeout);
-
+  console.log('item removed is:', itemRemoved);
   if(!itemRemoved) {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
-    var heapSum = 0;
+    // var heapSum = 0;
 
     if(!gameOver) {
       if(player === 1) {
@@ -240,7 +243,7 @@ var switchPlayer = function() {
 
   // timeout makes the computer take a second to play its turn
   setTimeout(function() {
-    if(aiMode && player === 2) {
+    if(aiMode && player === 2 && !gameOver) {
       aiPlayTurn();
       itemRemoved = false;
     }
@@ -276,7 +279,7 @@ var removeItem = function() {
     for(heap in heapObj) {
       heapSum += heapObj[heap];
     }
-
+    console.log("heapSum is: ", heapSum);
     // if one remaining piece, we have a winner
     if(heapSum === 1 && !gameOver) {
       gameOver = true;
@@ -284,9 +287,9 @@ var removeItem = function() {
     }
 
     // if the heap is emptied, auto switch the player
-    // if(heapObj[selectedHeap] === 0){
-    //   switchPlayer();
-    // } 
+    if(heapObj[selectedHeap] === 0){
+      switchPlayer();
+    } 
   } else {
     // case where user selects an item from a second heap during a turn
     M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
