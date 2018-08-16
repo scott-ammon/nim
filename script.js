@@ -284,9 +284,9 @@ var removeItem = function() {
     }
 
     // if the heap is emptied, auto switch the player
-    if(heapObj[selectedHeap] === 0){
-      switchPlayer();
-    } 
+    // if(heapObj[selectedHeap] === 0){
+    //   switchPlayer();
+    // } 
   } else {
     // case where user selects an item from a second heap during a turn
     M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
