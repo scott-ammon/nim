@@ -11,7 +11,7 @@ var heapObj = {             // stores item quantity in each heap
 };
 
 var initGame = function() {
-  // display the player names on the game buttons
+  // display the player names, or defaults to Player 1, Player 2
   if($("input[name='player-one']").val()) {
     var playerOneName = $("input[name='player-one']").val();
     $('#player-one').text(playerOneName);
@@ -216,7 +216,7 @@ var aiPlayTurn = function() {
 var switchPlayer = function() {
   $('.reminder-msg').hide();
   clearTimeout(reminderTimeout);
-
+  console.log("itemRemoved= ", itemRemoved);
   if(!itemRemoved) {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
@@ -269,13 +269,16 @@ var removeItem = function() {
 
   // valid move if choosing an item from the same heap
   if($(this).parent().attr('id') === selectedHeap) {
+    console.log(heapObj[selectedHeap]);
     heapObj[selectedHeap]--;
+    console.log(heapObj[selectedHeap]);
     $(this).hide(500);
 
     var heapSum = 0;
     for(heap in heapObj) {
       heapSum += heapObj[heap];
     }
+    console.log("heapSum =", heapSum);
 
     // if one remaining piece, we have a winner
     if(heapSum === 1 && !gameOver) {
@@ -284,9 +287,9 @@ var removeItem = function() {
     }
 
     // if the heap is emptied, auto switch the player
-    if(heapObj[selectedHeap] === 0){
-      switchPlayer();
-    } 
+    // if(heapObj[selectedHeap] === 0){
+    //   switchPlayer();
+    // } 
   } else {
     // case where user selects an item from a second heap during a turn
     M.toast({html: 'You may only remove items from one heap!', classes: 'rounded'});
