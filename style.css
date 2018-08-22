@@ -12,6 +12,10 @@ main {
   flex: 1 0 auto;
 }
 
+#modal {
+  max-height: 90%;
+}
+
 h4,
 .game-title {
   font-family: "Permanent Marker";
