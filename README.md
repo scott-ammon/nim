@@ -1,6 +1,6 @@
 # Nim - A Math Strategy Game
 ## General Assembly Unit 1 Project
-Play online: https://scott-ammon.github.io/unit1-game/
+Play online: https://scott-ammon.github.io/nim/
 
 ### This game was developed with:
 * HTML
