@@ -67,7 +67,8 @@ var runWinSequence = function() {
     setTimeout(function() {
       $('.heap-one').hide();
       $('.heap-two').hide();
-
+      
+      console.log("player is: ", player);
       // if either human player won, display their name, otherwise show the ai brain image
       if(player === 1 || player === 2 && aiMode === false) {
         $('.heap-two').append("<h3 class='win-msg'>" + playerName + " wins!</h3>");
@@ -171,6 +172,7 @@ var aiPlayTurn = function() {
   var itemsToRemove = aiComputeMove();
   console.log("Computer will remove: ", itemsToRemove);
 
+
   // get the name of the heap to match the class of the divs in html
   var heapKeys = Object.keys(heapObj);
   var heapName = heapKeys[itemsToRemove["heap-index"]];
@@ -211,6 +213,7 @@ var aiPlayTurn = function() {
     $('#player-two').addClass('disabled');
     $('#player-one').removeClass('disabled');
   }
+
 };
 
 var switchPlayer = function() {
@@ -220,7 +223,7 @@ var switchPlayer = function() {
   if(!itemRemoved) {
     M.toast({html: 'You have to remove at least one item!', classes: 'rounded'});
   } else {
-    var heapSum = 0;
+    // var heapSum = 0;
 
     if(!gameOver) {
       if(player === 1) {
@@ -240,7 +243,7 @@ var switchPlayer = function() {
 
   // timeout makes the computer take a second to play its turn
   setTimeout(function() {
-    if(aiMode && player === 2) {
+    if(aiMode && player === 2 && !gameOver) {
       aiPlayTurn();
       itemRemoved = false;
     }
@@ -271,8 +274,7 @@ var removeItem = function() {
   if($(this).parent().attr('id') === selectedHeap) {
     console.log(heapObj[selectedHeap]);
     heapObj[selectedHeap]--;
-    console.log(heapObj[selectedHeap]);
-    $(this).hide(500);
+    $(this).hide();
 
     var heapSum = 0;
     for(heap in heapObj) {
